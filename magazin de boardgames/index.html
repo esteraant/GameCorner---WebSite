@@ -18,42 +18,60 @@
     <link rel="manifest" href="./resurse/ico/site.webmanifest" />
     <meta name="msapplication-TileColor" content="#DA532C">
 
+    <link rel="stylesheet" href="./resurse/css/general.css" type="text/css" />
+    <link rel="stylesheet" href="./resurse/css/nav.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bonbon&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
     <header>
-        <section id="banner">
-            <picture>
-                <source srcset="./resurse/imagini/banner700x400.jpg" media="(max-width:700px)">
-                <source srcset="./resurse/imagini/banner1200.jpg" media="(max-width:1200px)">
-                <img src="./resurse/imagini/banner.jpg" alt="Banner">
-            </picture>
-
-            <div class="banner-text">
-                <h1 id="inceput-pagina">GameCorner</h1>
-                <nav>
-                    <ul>
+        <nav>
+                    <ul class="meniu">
                         <li>
-                            <a href="index.html">Acasă</a>
+                            <a href="#acasa">
+                                <i class="fa-solid fa-bounce fa-house"></i>  Acasă
+                            </a>
                             <ul>
                                 <li><a href= "#despre-noi">Despre noi</a></li>
-                                <li><a href="#noutati">Noutăți</a></li>
-                                <li><a href= "#curiozitati">Curiozități</a></li>
+                                <li><a href="#statistici-vanzari">Top jocuri</a></li>
                                 <li><a href="#promotii">Promoții</a></li>
-                                <li><a href="#calcul-reducere">Cum îți calculăm reducerile?</a></li>
+                                <li><a href="#sectiuni-interactive">Informații utile</a></li>
+                                <li><a href="#profil">Contul meu</a></li>
+                                <li><a href="#noutati">Noutăți</a></li>
                                 <li><a href="#evenimente">Evenimente</a></li>
-                                <li><a href= "#muzica-ambientala">Ce să asculți când te joci cu prietenii tăi?</a></li>
+                                <li><a href= "#localizare">Contact</a></li>
+                                <!-- <li><a href= "#muzica-ambientala">Muzică</a></li> -->
                                 
                             </ul>
                         </li>
                         
-                        <li><a href="#catalog-produse">Catalog Produse</a></li>
-                        <li><a href="#detalii-produse">Detalii Produs</a></li>
-                        <li><a href="#profil">Contul meu</a></li>
-                        <li><a href="#infoContact">Contact și alte informații</a></li>
+                        <li><a href="#catalog-produse">
+                            <i class="fa-solid fa-dice"></i>
+                            Produse</a></li>
+                        <!-- <li><a href="#detalii-produse">Detalii Produs</a></li> -->
+                        <li><a href="#profil">
+                            <i class="fa-solid fa-people-roof"></i>Contul meu</a></li>
+                        <li><a href="#localizare">
+                            <i class="fa-solid fa-location-dot"></i>Contact</a></li>
+                        <li><a href="#resurse-utile">
+                            <i class="fa-regular fa-lightbulb"></i>Resurse</a></li>
                     </ul>
                 </nav>
+        <section id="banner">
+            <picture>
+                <source srcset="./resurse/imagini/banner700x400.jpg" media="(max-width:700px)">
+                <source srcset="./resurse/imagini/banner1200.jpg" media="(max-width:1200px)">
+                <img src="./resurse/imagini/bannerMAX.jpg" alt="Banner">
+            </picture>
+
+            <div class="banner-text">
+                <h1 id="inceput-pagina">GameCorner</h1>
+                
             </div>
         </section>
     </header>
@@ -61,26 +79,22 @@
         
     <main> 
         <div id="grid-pagina">
-            <section id="acasa">
-                <hgroup>
-                    <h2>Bine ati venit la GameCorner!</h2>
-                    <p class="subtitlu">Descoperiți cele mai noi lansări de <b>boardgames România</b>.</p>
-                </hgroup>
-                <figure>
-                    <picture>
-                        <source srcset="./resurse/imagini/poza200x200.jpg" media="(max-width:700px)"/>
-                        <source srcset="./resurse/imagini/poza.jpg" media="(max-width:1200px)"/>
-                        <img src="./resurse/imagini/poza640x360.jpg" alt="text"/>
-                    </picture>
-                    <figcaption>Campionat de boardgames la GameCorner</figcaption>
+            <section id="despre-noi">
+                    <hgroup>
+                        <h2>Bine ati venit la GameCorner!</h2>
+                        <p class="subtitlu">Descoperiți cele mai noi lansări de <b>boardgames România</b>.</p>
+                    </hgroup>
+                    <figure>
+                        <picture>
+                            <source srcset="./resurse/imagini/poza200x200.jpg" media="(max-width:700px)"/>
+                            <source srcset="./resurse/imagini/poza.jpg" media="(max-width:1200px)"/>
+                            <img src="./resurse/imagini/poza640x360.jpg" alt="text"/>
+                        </picture>
+                        <figcaption>Campionat de boardgames la GameCorner</figcaption>
 
-                </figure>
+                    </figure>
 
-
-
-                <section id="despre-noi">
-                    <h3>Despre noi</h3>
-                    <p><b>GameCorner</b> este site-ul ideal pentru orice pasionat de <b>jocuri de societate</b>. 
+                <p><b>GameCorner</b> este site-ul ideal pentru orice pasionat de <b>jocuri de societate</b>. 
                         Suntem un <b>magazin online jocuri</b> care își propune să aducă cele mai bune <b>boardgames</b> direct la tine acasă. 
                         Fie că preferi <b>jocuri de masă</b> clasice sau cauți cele mai noi jocuri, aici vei găsi mereu ceva pe gustul tău.</p>
                     
@@ -95,111 +109,70 @@
                         plănuiești o seară cu prietenii plină de <b>jocuri multiplayer</b>, <b>GameCorner</b> este partenerul tău de încredere. 
                         Explorează acum oferta noastră de <b>boardgames România</b> și alege cele mai bune <b>jocuri de masă</b> și 
                         <b>jocuri de strategie</b> pentru colecția ta!</p>
-                </section>
+            </section>
 
-
+            <section id="statistici-vanzari">
+            <h2>Cele mai populare jocuri în 2026</h2>
+            <table id="tab-vanzari">
+                <caption>Topul vânzărilor pentru categoria <b>boardgames România</b></caption>
                 
-                <section id="noutati">
-                    <h3>Noutăți și Lansări</h3>
-                    <p>Cele mai noi <b>jocuri de societate</b> tocmai au ajuns în stocul nostru, precum: </p>
-                    <ul>
-                        <li>
-                            <strong>Catan</strong> – celebrul joc de strategie și negociere.
-                        </li>
-                        <li>
-                            <strong>Alias Party</strong> – joc de cuvinte, perfect pentru sesiunile de jocuri cu prietenii sau familia.
-                        </li>
-                        <li>
-                            <strong>Activity</strong> – un joc clasic al interacțiunii și creativității, ideal pentru seri memorabile cu prietenii.
-                        </li>
-                    </ul>
-                    <p>Pentru a fi la curent cu topurile mondiale de boardgames, vizitați comunitatea 
-                            <a href="https://boardgamegeek.com" target="_blank">BoardGameGeek</a>, cea mai mare comunitate 
-                            dedicată jocurilor de societate.</p>
-                </section>
-
-                <section id="curiozitati">
-                    <h3>Secretul numerelor 6 și 8 în Catan</h3>
-                    <p>Te-ai întrebat de ce pe tabla de joc jetoanele cu <b>6</b> și <b>8</b> sunt singurele scrise cu roșu? Nu e doar design! 
-                        Acestea sunt cele mai norocoase numere după cifra 7.</p>
-                    
-                    <p>Matematic, șansa de a nimeri o anumită sumă (<i>s</i>) când dai cu două zaruri se calculează astfel:</p>
-
-                    <div>
-                        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                            <mi>Probabilitate</mi> <!--math identifier-->
-                            <mo>(</mo>
-                            <mi>s</mi>
-                            <mo>)</mo>
-                            <mo>=</mo>
-                            <mfrac>
-                                <mrow>
-                                    <mn>6</mn>
-                                    <mo>-</mo>
-                                    <mo>|</mo>
-                                    <mn>7</mn>
-                                    <mo>-</mo>
-                                    <mi>s</mi>
-                                    <mo>|</mo>
-                                </mrow>
-                                <mn>36</mn>
-                            </mfrac>
-                        </math>
-                    </div>
-
-                    <p>Mai simplu spus: pentru a obține un <b>2</b> sau un <b>12</b>, ai o singură combinație posibilă. 
-                        Pentru <b>6</b> sau <b>8</b>, ai câte 5 combinații diferite! De aceea, cine își pune satele pe aceste numere 
-                        are cele mai mari șanse să câștige.</p>
-                </section>
-
+                <thead>
+                    <tr>
+                        <th>Poziție</th>
+                        <th>Nume Joc</th>
+                        <th>Categorie</th>
+                        <th>Preț (RON)</th>
+                        <th>Disponibilitate</th>
+                    </tr>
+                </thead>
                 
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><b>Catan</b></td>
+                        <td rowspan="2">Jocuri de strategie</td>
+                        <td>180</td>
+                        <td>În stoc</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Nume de cod</td>
+                        <td>95</td>
+                        <td>Stoc limitat</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><b>Alias</b></td>
+                        <td>Jocuri de petrecere</td>
+                        <td>120</td>
+                        <td>În stoc</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Ticket to Ride</td>
+                        <td>Jocuri de familie</td>
+                        <td>210</td>
+                        <td>În stoc</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><b>Uno</b></td>
+                        <td>Cărți de joc</td>
+                        <td>35</td>
+                        <td>În stoc</td>
+                    </tr>
+                </tbody>
+                
+                <tfoot>
+                    <tr>
+                        <td colspan="4">Total titluri în topul lunii:</td>
+                        <td>5</td>
+                    </tr>
+                </tfoot>
+            </table>
+            </section>
 
-                <section id="promotii">
-                    <hgroup>
-                        <h3>Promoții și Oferte Speciale</h3>
-                        <p>Cele mai bune prețuri pentru pasionații de <b>boardgames România</b></p>
-                    </hgroup>
-                    
-                    <p>Profită de reducerile noastre la diverse <b>jocuri de masă</b>.</p>
-                    
-                    <p>Nu rata ocazia de a adăuga în colecția ta <b>Catan</b>, <b>Alias</b> sau seturi de <b>carti de joc</b> la cele mai mici prețuri!</p>
-                    <p><strong>Atenție! Oferta expiră la data de 8 aprilie 2026!</strong> Nu rata ocazia de a cumpăra jocuri cu mecanici de 
-                        <i>worker placement</i> sau <i>area control</i> la prețuri reduse.</p>
-                    
-                    <p>Este <em>esențial</em> să verifici stocul înainte de a plasa comanda, deoarece produsele din categoria 
-                        <b>jocuri de societate</b> se epuizează rapid.</p>
-                </section>
-
-                <section id="calcul-reducere">
-                    <h3>Cum calculăm reducerea ta?</h3>
-                    <div>
-                        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                            <msub>
-                                <mi>P</mi>
-                                <mi>final</mi>
-                            </msub>
-                            <mo>=</mo>
-                            <msub>
-                                <mi>P</mi>
-                                <mi>inițial</mi>
-                            </msub>
-                            <mo>✕</mo>
-                            <mo>(</mo>
-                            <mrow>
-                                <mn>1</mn>
-                                <mo>-</mo>
-                                <mfrac>
-                                    <mi>reducere</mi>
-                                    <mn>100</mn>
-                                </mfrac>
-                            </mrow>
-                            <mo>)</mo>
-                        </math>
-                    </div>
-                    <p>Unde <i>reducerea</i> reprezintă procentul aplicat în perioada promoțională curentă.</p>
-                </section>
-
-                <section id="evenimente">
+            <section id="evenimente">
                     <h3>Evenimente în Comunitate</h3>
                     <p>Alătură-te comunității noastre de pasionați de <b>boardgames România</b> la următoarele întâlniri:</p>
                     
@@ -233,9 +206,192 @@
 
                         </li>
                     </ul>
-                </section>
+            </section>
+                
+            <section id="noutati">
+                    <h2>Noutăți și Lansări</h2>
+                    <p>Cele mai noi <b>jocuri de societate</b> tocmai au ajuns în stocul nostru, precum: </p>
+                    <ul>
+                        <li>
+                            <strong>Catan</strong> – celebrul joc de strategie și negociere.
+                        </li>
+                        <li>
+                            <strong>Alias Party</strong> – joc de cuvinte, perfect pentru sesiunile de jocuri cu prietenii sau familia.
+                        </li>
+                        <li>
+                            <strong>Activity</strong> – un joc clasic al interacțiunii și creativității, ideal pentru seri memorabile cu prietenii.
+                        </li>
+                    </ul>
+                    <p>Pentru a fi la curent cu topurile mondiale de boardgames, vizitați comunitatea 
+                            <a href="https://boardgamegeek.com" target="_blank">BoardGameGeek</a>, cea mai mare comunitate 
+                            dedicată jocurilor de societate.</p>
+            
+                    <section id="tutoriale">
+                        <h2>Tutoriale</h2>
+                        <p>Dacă nu aveți răbdare să citiți regulamentul, vă recomandăm următoarele ghiduri video. 
+                            Sperăm să le urmăriți, să vedeți cât e de <s>greu</s> simplu să învățați mecanicile, 
+                                    și să veniți să achiziționați jocul de la noi &#128512;. Mulțumim! &#128513;</p>
+                        
+                        <div class="container-iframe">
+                            
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/lkx0Dn2Oiek" name="ifr-video" 
+                                title="YouTube video player" style="border: 0;" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                            </iframe>
+                            <div class="taburi-iframe">
+                                <a href="https://www.youtube.com/embed/lkx0Dn2Oiek" target="ifr-video">Tutorial Catan</a>
+                                <a href="https://www.youtube.com/embed/94foNcvHXWY" target="ifr-video">Tutorial Alias</a>
+                                <a href="https://www.youtube.com/embed/3cyru5TaaF0" target="ifr-video">Recomandări </a><br>
+                            </div>
+                        </div>
+                    </section>
+            
+            </section>
 
-                <section id="muzica-ambientala">
+            <section id="sectiuni-interactive">
+            <h2>Informații Utile Jucători</h2>
+            
+            <div id="faq-boardgames">
+                <h3>Întrebări Frecvente</h3>
+                <details>
+                    <summary>Cum aleg primul meu joc de strategie?</summary>
+                    <p>Dacă ești începător, îți recomandăm titluri precum <b>Catan</b> sau <i>Ticket to Ride</i>. Acestea au reguli simple, dar oferă o profunzime tactică excelentă pentru <b>boardgames România</b>.</p>
+                </details>
+                <details>
+                    <summary>Aveți jocuri potrivite pentru copii sub 6 ani?</summary>
+                    <p>Desigur! Avem o categorie specială de <b>jocuri de masă</b> Junior, concepute pentru a dezvolta memoria și coordonarea celor mici prin joacă.</p>
+                </details>
+                <details>
+                    <summary>Se pot testa jocurile înainte de cumpărare?</summary>
+                    <p>Da, te așteptăm la serile noastre de <b>evenimente</b> unde poți încerca majoritatea jocurilor din catalogul nostru de <b>magazin online jocuri</b>.</p>
+                </details>
+            </div>
+
+            <br>
+
+            <div id="beneficii-membri">
+                <h3>Beneficii Club GameCorner</h3>
+                <details>
+                    <summary><b>Reducere de fidelitate &percnt;</b></summary>
+                    <p>Membrii clubului primesc o reducere automată de 10&percnt; la orice comandă care depășește pragul de 300 RON.</p>
+                </details>
+                <details>
+                    <summary><b>Acces Early-Bird la lansări</b></summary>
+                    <p>Primești notificări cu 24 de ore înainte de lansarea oficială a noilor titluri de <b>jocuri de strategie</b> pentru a-ți rezerva exemplarul.</p>
+                </details>
+            </div>
+            </section>
+
+            <section id="profil">
+                <h2>Contul meu</h2>
+                <p>Administrează-ți datele personale și vizualizează lista de <b>favorite</b>.</p>
+                
+                <section id="istoricComenzi">
+                    <h3>Istoric Comenzi</h3>
+                    <p>Aici poți vedea toate achizițiile tale de <b>jocuri de masă</b>.</p>
+                </section>
+            </section>
+
+            <section id="localizare">
+                <h2>Localizare Sediu Central</h2>
+                <p>Te așteptăm în inima Bucureștiului pentru a testa cele mai noi <b>boardgames România</b>:</p>
+                
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.884301139315!2d26.097011776740963!3d44.43553547107578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83!5e0!3m2!1sro!2sro!4v1772896288346!5m2!1sro!2sro" 
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                
+                <address>
+                    <strong>Contact GameCorner</strong>
+                    Telefon: <a href="tel:+40771070700" title="Sună la GameCorner">+40 771 070 700</a><br>
+                    
+                    E-mail: <a href="mailto:contact@gamecorner.ro" title="Trimite-ne un e-mail">contact@gamecorner.ro</a><br>
+                    
+                    WhatsApp: <a href="https://wa.me/40771070700" target="_blank" title="Discută cu noi pe WhatsApp">Răspundem și pe WhatsApp</a>
+                </address>
+            </section>
+
+            <section id="promotii">
+                    <hgroup>
+                        <h3>Promoții și Oferte Speciale</h3>
+                        <p>Cele mai bune prețuri pentru pasionații de <b>boardgames România</b></p>
+                    </hgroup>
+                    
+                    <p>Profită de reducerile noastre la diverse <b>jocuri de masă</b>.</p>
+                    
+                    <p>Nu rata ocazia de a adăuga în colecția ta <b>Catan</b>, <b>Alias</b> sau seturi de <b>carti de joc</b> la cele mai mici prețuri!</p>
+                    <p><strong>Atenție! Oferta expiră la data de 8 aprilie 2026!</strong> Nu rata ocazia de a cumpăra jocuri cu mecanici de 
+                        <i>worker placement</i> sau <i>area control</i> la prețuri reduse.</p>
+                    
+                    <p>Este <em>esențial</em> să verifici stocul înainte de a plasa comanda, deoarece produsele din categoria 
+                        <b>jocuri de societate</b> se epuizează rapid.</p>
+            </section>
+        </div>
+                
+
+        <!-- <section id="curiozitati">
+                    <h3>Secretul numerelor 6 și 8 în Catan</h3>
+                    <p>Te-ai întrebat de ce pe tabla de joc jetoanele cu <b>6</b> și <b>8</b> sunt singurele scrise cu roșu? Nu e doar design! 
+                        Acestea sunt cele mai norocoase numere după cifra 7.</p>
+                    
+                    <p>Matematic, șansa de a nimeri o anumită sumă (<i>s</i>) când dai cu două zaruri se calculează astfel:</p>
+
+                    <div>
+                        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                            <mi>Probabilitate</mi> 
+                            <mo>(</mo>
+                            <mi>s</mi>
+                            <mo>)</mo>
+                            <mo>=</mo>
+                            <mfrac>
+                                <mrow>
+                                    <mn>6</mn>
+                                    <mo>-</mo>
+                                    <mo>|</mo>
+                                    <mn>7</mn>
+                                    <mo>-</mo>
+                                    <mi>s</mi>
+                                    <mo>|</mo>
+                                </mrow>
+                                <mn>36</mn>
+                            </mfrac>
+                        </math>
+                    </div>
+
+                    <p>Mai simplu spus: pentru a obține un <b>2</b> sau un <b>12</b>, ai o singură combinație posibilă. 
+                        Pentru <b>6</b> sau <b>8</b>, ai câte 5 combinații diferite! De aceea, cine își pune satele pe aceste numere 
+                        are cele mai mari șanse să câștige.</p>
+
+                    <section id="calcul-reducere">
+                        <h3>Cum calculăm reducerea ta?</h3>
+                        <div>
+                            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                                <msub>
+                                    <mi>P</mi>
+                                    <mi>final</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <msub>
+                                    <mi>P</mi>
+                                    <mi>inițial</mi>
+                                </msub>
+                                <mo>✕</mo>
+                                <mo>(</mo>
+                                <mrow>
+                                    <mn>1</mn>
+                                    <mo>-</mo>
+                                    <mfrac>
+                                        <mi>reducere</mi>
+                                        <mn>100</mn>
+                                    </mfrac>
+                                </mrow>
+                                <mo>)</mo>
+                            </math>
+                        </div>
+                        <p>Unde <i>reducerea</i> reprezintă procentul aplicat în perioada promoțională curentă.</p>
+                    </section>
+        </section>   
+
+        <section id="muzica-ambientala">
                     <h3>Nu știi ce să asculți când te joci?</h3>
                     <p>Încearcă acest playlist realizat special pentru tine:</p>
                     
@@ -247,11 +403,7 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
-                </section>
-
-
-            </section>
-        </div>
+        </section>
 
 
         <div id= "catalog-produse">
@@ -291,7 +443,6 @@
             
             </section>
         </div>
-
 
         <section id="detalii-produse">
             <h2>Detalii produse</h2>
@@ -439,167 +590,31 @@
             </section>
         </section>
 
-        <section id="profil">
-            <h2>Contul meu</h2>
-            <p>Administrează-ți datele personale și vizualizează lista de <b>favorite</b>.</p>
-            
-            <section id="istoricComenzi">
-                <h3>Istoric Comenzi</h3>
-                <p>Aici poți vedea toate achizițiile tale de <b>jocuri de masă</b>.</p>
-            </section>
-        </section>
-
-        <section id="infoContact">
-            <h2>Contact și alte informații</h2>
-            
-            <section id="faq">
-                <h3>Întrebări frecvente</h3>
+         <section id="faq">
+                <h2>Întrebări frecvente</h2>
                 <p>Tot ce trebuie să știi despre livrarea de <b>boardgames România</b>.</p>
                 <h3>Dicționarul Jucătorului</h3>
                 <p>Un termen des întâlnit în rândul iubitorilor de Boardgames este <dfn>Meeple</dfn>, care reprezintă figurina din lemn sau plastic 
                         utilizată pentru a marca poziția unui jucător pe tabla de joc.</p>
                 <p>Așa cum spunea George Bernard Shaw: <q>Nu ne oprim din joacă pentru că îmbătrânim, îmbătrânim pentru că ne oprim din joacă.</q></p>
                     
-            </section>
-            <section id="localizare">
-                <h3>Localizare Sediu Central</h3>
-                <p>Te așteptăm în inima Bucureștiului pentru a testa cele mai noi <b>boardgames România</b>:</p>
-                
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.884301139315!2d26.097011776740963!3d44.43553547107578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83!5e0!3m2!1sro!2sro!4v1772896288346!5m2!1sro!2sro" 
-                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </section>
-
-
-        <section id="statistici-vanzari">
-            <h2>Cele mai populare jocuri în 2026</h2>
-            <table id="tab-top-vanzari">
-                <caption>Topul vânzărilor pentru categoria <b>boardgames România</b></caption>
-                
-                <thead>
-                    <tr>
-                        <th>Poziție</th>
-                        <th>Nume Joc</th>
-                        <th>Categorie</th>
-                        <th>Preț (RON)</th>
-                        <th>Disponibilitate</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><b>Catan</b></td>
-                        <td rowspan="2">Jocuri de strategie</td>
-                        <td>180</td>
-                        <td>În stoc</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Nume de cod</td>
-                        <td>95</td>
-                        <td>Stoc limitat</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><b>Alias</b></td>
-                        <td>Jocuri de petrecere</td>
-                        <td>120</td>
-                        <td>În stoc</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Ticket to Ride</td>
-                        <td>Jocuri de familie</td>
-                        <td>210</td>
-                        <td>În stoc</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><b>Uno</b></td>
-                        <td>Cărți de joc</td>
-                        <td>35</td>
-                        <td>În stoc</td>
-                    </tr>
-                </tbody>
-                
-                <tfoot>
-                    <tr>
-                        <td colspan="4">Total titluri în topul lunii:</td>
-                        <td>5</td>
-                    </tr>
-                </tfoot>
-            </table>
         </section>
 
-            <section id="tutoriale">
-            <h2>Tutoriale</h2>
-            <p>Dacă nu aveți răbdare să citiți regulamentul, vă recomandăm următoarele ghiduri video. 
-                Sperăm să le urmăriți, să vedeți cât e de <s>greu</s> simplu să învățați mecanicile, 
-                        și să veniți să achiziționați jocul de la noi &#128512;. Mulțumim! &#128513;</p>
-            
-            <div class="container-iframe">
-               <div class="taburi-iframe">
-                    <a href="https://www.youtube.com/embed/lkx0Dn2Oiek" target="ifr-video">Tutorial Catan</a>
-                    <a href="https://www.youtube.com/embed/94foNcvHXWY" target="ifr-video">Cum se joacă Alias</a>
-                    <a href="https://www.youtube.com/embed/3cyru5TaaF0" target="ifr-video">Recomandări Boardgames</a><br>
-                </div>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/lkx0Dn2Oiek" name="ifr-video" 
-                    title="YouTube video player" style="border: 0;" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                </iframe>
-            </div>
-            
-
-        </section>
-            <section id="resurse-utile">
-                <h3>Resurse pentru Descărcare</h3>
+        
+        <section id="resurse-utile">
+                <h2>Resurse pentru Descărcare</h2>
                 <p>Descarcă logoul oficial <b>GameCorner</b>:</p>
                 <a href="./resurse/imagini/sigla.jpg" download="Logo_GameCorner.jpg">
                     Click aici pentru a descărca logoul
                 </a>
-            </section>
-        </section>
-
-
-        <section id="sectiuni-interactive">
-            <h2>Informații Utile Jucători</h2>
-            
-            <div id="faq-boardgames">
-                <h3>Întrebări Frecvente</h3>
-                <details>
-                    <summary>Cum aleg primul meu joc de strategie?</summary>
-                    <p>Dacă ești începător, îți recomandăm titluri precum <b>Catan</b> sau <i>Ticket to Ride</i>. Acestea au reguli simple, dar oferă o profunzime tactică excelentă pentru <b>boardgames România</b>.</p>
-                </details>
-                <details>
-                    <summary>Aveți jocuri potrivite pentru copii sub 6 ani?</summary>
-                    <p>Desigur! Avem o categorie specială de <b>jocuri de masă</b> Junior, concepute pentru a dezvolta memoria și coordonarea celor mici prin joacă.</p>
-                </details>
-                <details>
-                    <summary>Se pot testa jocurile înainte de cumpărare?</summary>
-                    <p>Da, te așteptăm la serile noastre de <b>evenimente</b> unde poți încerca majoritatea jocurilor din catalogul nostru de <b>magazin online jocuri</b>.</p>
-                </details>
-            </div>
-
-            <br>
-
-            <div id="beneficii-membri">
-                <h3>Beneficii Club GameCorner</h3>
-                <details>
-                    <summary><b>Reducere de fidelitate &percnt;</b></summary>
-                    <p>Membrii clubului primesc o reducere automată de 10&percnt; la orice comandă care depășește pragul de 300 RON.</p>
-                </details>
-                <details>
-                    <summary><b>Acces Early-Bird la lansări</b></summary>
-                    <p>Primești notificări cu 24 de ore înainte de lansarea oficială a noilor titluri de <b>jocuri de strategie</b> pentru a-ți rezerva exemplarul.</p>
-                </details>
-            </div>
-        </section>
-
+        </section> -->
 
     </main>
    
     <footer>
+        <a href="#inceput-pagina" id="link-top" title="Sari la începutul paginii">
+            <div id="cerc"></div>
+        </a>
         <p>
             <a href="#inceput-pagina" title="Revino la meniul principal">Sari la începutul paginii</a>
         </p>

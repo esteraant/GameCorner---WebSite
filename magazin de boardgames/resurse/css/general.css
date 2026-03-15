@@ -1,0 +1,386 @@
+html {
+    font-size: 18px; /*dimensiunea de baza*/
+    transition: font-size 0.5s ease-in-out;
+}
+
+body {
+    --culoare-brand: #DA532C;
+    --culoare-text: #2C3E50;
+    --culoare-fundal: #ECF0F1;
+    --culoare-contur: #8F5546;
+    --culoare-detalii: #3495AE;
+    --culoare-inchisa: #090909;
+    --culoare-zona1: #f8f3f3;  
+    --culoare-zona8: #e3c0b1; 
+    --culoare-tab-even: rgba(143, 85, 70, 0.1); 
+    --culoare-tab-odd: rgba(52, 149, 174, 0.1); 
+    --culaore-text-footer: #000080;
+    --bordura-footer: rgba(255, 255, 255, 0.2);
+    
+    background-color: var(--culoare-fundal);
+    color: var(--culoare-text);
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    --margine-pagina: 120px;
+    --gap-grid: 20px;
+    --padding-sectiune: 25px;
+
+    font-size: 18px; 
+    line-height: 1.5;
+    overflow-x: hidden; /*prevenirea scroll-ului orizontal*/
+}
+
+p{
+    border:none;
+    margin-bottom: 1px;
+}
+
+
+
+img, iframe, video {
+    display: block;
+    width: 100%;      
+    max-width: 100%;   
+    min-width: 200px; 
+    height: auto;     
+    border-radius: 8px;
+}
+
+#banner{
+    width: 100%;
+    position: relative; 
+}
+.banner-text {
+    position: absolute;
+    top: 50%;       
+    left: 50%; 
+    transform: translate(-50%, -50%); /*pentru a putea fi exact in centru*/
+    
+    text-align: center;
+    width: 100%;    
+    z-index: 5; 
+    animation: animatie-titlu 1.5s ease-out forwards;
+}
+
+#inceput-pagina {
+    font-family: 'Fantasy', cursive;
+    font-size: 80px;
+    color: var(--culoare-text); 
+    text-shadow: 3px 3px 10px var(--culoare-contur);
+    margin: 0;
+    
+}
+
+main{
+    margin-left: var(--margine-pagina);
+    margin-right: var(--margine-pagina);
+}
+
+footer{
+    padding: var(--padding-sectiune);
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 3px;
+    color: var(--culoare-fundal);
+    background-color: var(--culoare-contur);
+    border-radius: 15px 15px 0 0;
+    border: 1px solid var(--culoare-contur);
+}
+
+#grid-pagina > * {
+    border:2px solid var(--culoare-contur);
+    box-shadow: 0 0 5px var(--culoare-contur);
+    border-radius: 12px;
+    padding: var(--padding-sectiune);
+    background-color: var(--culoare-fundal);
+}
+
+#grid-pagina{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    width: 100%;
+    gap: var(--gap-grid);
+
+    grid-template-areas:
+        "zona1 zona1 zona1 "
+        "zona2 zona2 zona8 "
+        "zona5 zona6 zona8 "
+        "zona4 zona3 zona7 ";
+}
+   
+
+#despre-noi{
+    grid-area: zona1;
+    background-color: var(--culoare-zona1);
+}
+#statistici-vanzari{
+    grid-area: zona2;
+}
+#evenimente{
+    grid-area: zona3;
+}
+#noutati{
+    grid-area: zona4;
+}
+#sectiuni-interactive{
+    grid-area: zona5;
+}
+#profil{
+    grid-area: zona6;
+}
+#localizare{
+    grid-area: zona7;
+}
+#promotii{
+    grid-area: zona8;
+    background-color: var(--culoare-zona8);
+    border-style: dashed;
+    
+
+}
+ 
+
+
+figure{
+    margin: 0;
+}
+
+figure.fg-img > img{
+    width:100%;
+}
+
+
+.container-tabel{
+    overflow-x: auto; /* Scrollbar orizontal pe ecrane mici */
+    border-radius: 15px; 
+    overflow: hidden; /* Ascunde marginile tabelului care depășesc rotunjirea */
+    border: 2px solid var(--culoare-contur); 
+    margin: 20px 0;
+}
+#tab-vanzari{
+    border-collapse: collapse;
+    width: 100%;
+    background-color: var(--culoare-fundal);
+}
+
+#tab-vanzari caption {
+    caption-side: bottom;
+    padding: 10px;
+    font-style: italic;
+    color: var(--culoare-text); 
+}
+
+#tab-vanzari td, #tab-vanzari th{
+    border: 1px solid var(--culoare-contur);
+    padding: 10px;
+    text-align: center;
+}
+
+#tab-vanzari td:nth-child(even), #tab-vanzari th:nth-child(even){
+    background-color: var(--culoare-tab-even); 
+}
+
+#tab-vanzari td:nth-child(odd), #tab-vanzari th:nth-child(odd){
+    background-color: var(--culoare-tab-odd) ;
+}
+#tab-vanzari tbody tr:nth-child(2) td:nth-child(3){ 
+    background-color: var(--culoare-tab-even);
+} 
+#tab-vanzari tbody tr:nth-child(2) td:nth-child(4){ 
+    background-color: var(--culoare-tab-odd);
+} 
+
+#tab-vanzari tbody tr {
+    transition: background-color 0.5s ease; 
+}
+#tab-vanzari tbody tr:hover {
+    background-color:var(--culoare-zona8) !important; 
+}
+
+#tab-vanzari tbody tr td:hover {
+    background-color: var(--culoare-detalii) !important; 
+    color: var(--culoare-fundal);
+    cursor: pointer;
+}
+
+
+.container-iframe {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.container-iframe iframe {
+    width: 100%;
+    border: 2px solid var(--culoare-contur);
+    border-bottom: none;
+    background-color: var(--culoare-fundal);
+}
+
+.taburi-iframe {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 6px;
+    border: none !important;
+}
+
+.taburi-iframe > a {
+    padding: 10px 15px;
+    background-color: var(--culoare-fundal);
+    border: 2px solid var(--culoare-contur);
+    text-decoration: none;
+    color: var(--culoare-text);
+    font-weight: bold;
+    font-size: 10px;
+    /* padding: 5px 12px; */
+    
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-top: none; 
+    
+    transition: all 0.3s ease;
+}
+
+.taburi-iframe > a:hover {
+    background-color: var(--culoare-detalii);
+    color: var(--culoare-fundal);
+    transform: translateY(2px); 
+}
+
+
+#link-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    
+    border-left: 5px solid var(--culoare-detalii);
+    border-right: 5px solid var(--culoare-detalii);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-radius: 50%; 
+    
+    opacity: 0.5; 
+    transition: all 0.5s ease; 
+    z-index: 100;
+    text-decoration: none;
+}
+
+#cerc {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 18px solid var(--culoare-contur);
+    
+    transition: transform 0.5s ease, border-bottom-color 0.5s ease;
+}
+
+#link-top:hover {
+    opacity: 1; 
+    background-color: var(--culoare-tab-odd);
+}
+
+#link-top:hover #cerc {
+    transform: translateY(-8px);
+    border-bottom-color: var(--culoare-brand);
+}
+
+footer p {
+    border: none;
+    margin: 0;
+}
+footer small {
+    display: block;
+    margin-top: 10px;
+    border-top: 1px solid var(--bordura-footer);
+    padding-top: 15px;
+}
+
+footer a {
+    color: var(--culaore-text-footer);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+@media screen and (max-width:1200px) {
+
+    body{
+        --margine-pagina:60px;
+        --gap-grid: 15px;
+        font-size: 17px;
+    }
+    #inceput-pagina {
+        font-size: 60px;
+    }
+    html {
+        font-size: 17px;
+    }
+
+    #grid-pagina{
+        grid-template-columns: 1fr 1fr;
+
+        grid-template-areas:
+            "zona1 zona1"
+            "zona2 zona2"
+            "zona8 zona8"
+            "zona5 zona6"
+            "zona4 zona3"
+            "zona7 zona7";
+    }
+}
+@keyframes animatie-titlu {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -150%); 
+    }
+    50% {
+        transform: translate(-50%, -100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%); 
+    }
+}
+
+
+
+@media screen and (max-width:700px) {
+
+    body{
+        --margine-pagina:20px;
+        --gap-grid: 10px;
+        font-size: 16px;
+    }
+    html {
+        font-size: 16px;
+    }
+
+    #inceput-pagina {
+        font-size: 40px;
+    }
+
+    #grid-pagina{
+        display: block;
+    }
+    #grid-pagina > *{
+        margin-bottom: 20px;
+    }
+    * {
+        animation: none !important;
+        transition: none !important; 
+    }
+    .banner-text {
+        animation: none !important;
+    }
+}
