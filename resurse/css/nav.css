@@ -37,7 +37,6 @@ ul.meniu  ul{
     left: 0;
     width: 100%;
     min-width: 100%;
-    z-index: 20; 
     background-color: var(--culoare-fundal); 
     border: 1px solid var(--culoare-contur);
 }
@@ -68,7 +67,7 @@ ul.meniu>li:hover>ul{
     }
     100%{
         opacity: 1;
-        transform:scale(1,1)
+        transform:scale(1,1);
     }
 }
 
@@ -105,7 +104,7 @@ ul.meniu li:hover{
     cursor: pointer;
 }
 ul.meniu ul li a {
-    color: var(--culaore-text) !important;
+    color: var(--culoare-text) !important;
 }
 ul.meniu>li:hover a{
     color: var(--culoare-fundal);
