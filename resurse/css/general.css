@@ -14,7 +14,7 @@ body {
     --culoare-zona8: #e3c0b1; 
     --culoare-tab-even: rgba(143, 85, 70, 0.1); 
     --culoare-tab-odd: rgba(52, 149, 174, 0.1); 
-    --culaore-text-footer: #000080;
+    --culoare-text-footer: #000080;
     --bordura-footer: rgba(255, 255, 255, 0.2);
     
     background-color: var(--culoare-fundal);
@@ -28,7 +28,7 @@ body {
     --gap-grid: 20px;
     --padding-sectiune: 25px;
 
-    font-size: 18px; 
+    font-size: 1rem; 
     line-height: 1.5;
     overflow-x: hidden; /*prevenirea scroll-ului orizontal*/
 }
@@ -38,7 +38,21 @@ p{
     margin-bottom: 1px;
 }
 
+/* Redefinim dimensiunile titlurilor in unitati relative */
 
+h1 {
+    font-size: 2.5rem; /*45 px*/
+    color: var(--culoare-brand); 
+}
+
+h2 {
+    font-size: 2rem; /*36px*/
+    color: var(--culoare-text);
+}
+
+h3 {
+    font-size: 1.5rem; /*27px*/
+}
 
 img, iframe, video {
     display: block;
@@ -67,7 +81,7 @@ img, iframe, video {
 
 #inceput-pagina {
     font-family: 'Fantasy', cursive;
-    font-size: 80px;
+    font-size: 4.5rem;
     color: var(--culoare-text); 
     text-shadow: 3px 3px 10px var(--culoare-contur);
     margin: 0;
@@ -156,13 +170,14 @@ figure.fg-img > img{
 .container-tabel{
     overflow-x: auto; /* Scrollbar orizontal pe ecrane mici */
     border-radius: 15px; 
-    overflow: hidden; /* Ascunde marginile tabelului care depășesc rotunjirea */
     border: 2px solid var(--culoare-contur); 
     margin: 20px 0;
+    /* overflow: hidden; */
 }
 #tab-vanzari{
     border-collapse: collapse;
     width: 100%;
+    min-width:600px;
     background-color: var(--culoare-fundal);
 }
 
@@ -236,7 +251,7 @@ figure.fg-img > img{
     text-decoration: none;
     color: var(--culoare-text);
     font-weight: bold;
-    font-size: 10px;
+    font-size: 0.6rem;
     /* padding: 5px 12px; */
     
     border-bottom-left-radius: 12px;
@@ -276,7 +291,7 @@ figure.fg-img > img{
     text-decoration: none;
 }
 
-#cerc {
+#triunghi {
     width: 0;
     height: 0;
     border-left: 12px solid transparent;
@@ -291,10 +306,48 @@ figure.fg-img > img{
     background-color: var(--culoare-tab-odd);
 }
 
-#link-top:hover #cerc {
+#link-top:hover #triunghi {
     transform: translateY(-8px);
     border-bottom-color: var(--culoare-brand);
 }
+
+
+/* --- Stilizare MathML --- */
+
+.math-catan {
+    font-size: 1.4rem;
+    padding: 1.2rem;
+    background-color: var(--culoare-zona1);
+    border-radius: 10px;
+    box-shadow:  0 0 5px var(--culoare-inchisa);
+}
+
+.m-func {
+    color: var(--culoare-text-footer);
+    font-weight: bold;
+    font-family: serif;
+}
+
+.m-var {
+    color: var(--culoare-brand);
+    font-style: italic;
+}
+
+.m-num {
+    color: var(--culoare-text);
+    font-size: 1.1em;
+}
+
+.m-accent {
+    color: var(--culoare-brand);
+    font-weight: 800;
+}
+
+.m-op {
+    color: var(--culoare-contur);
+    padding: 0 2px;
+}
+
 
 footer p {
     border: none;
@@ -308,37 +361,12 @@ footer small {
 }
 
 footer a {
-    color: var(--culaore-text-footer);
+    color: var(--culoare-text-footer);
     text-decoration: underline;
     font-weight: bold;
 }
 
-@media screen and (max-width:1200px) {
 
-    body{
-        --margine-pagina:60px;
-        --gap-grid: 15px;
-        font-size: 17px;
-    }
-    #inceput-pagina {
-        font-size: 60px;
-    }
-    html {
-        font-size: 17px;
-    }
-
-    #grid-pagina{
-        grid-template-columns: 1fr 1fr;
-
-        grid-template-areas:
-            "zona1 zona1"
-            "zona2 zona2"
-            "zona8 zona8"
-            "zona5 zona6"
-            "zona4 zona3"
-            "zona7 zona7";
-    }
-}
 @keyframes animatie-titlu {
     0% {
         opacity: 0;
@@ -354,20 +382,51 @@ footer a {
 }
 
 
+@media screen and (max-width:1200px) {
+
+    html {
+        font-size: 17px;
+    }
+
+    body{
+        --margine-pagina:60px;
+        --gap-grid: 15px;
+        font-size: 1rem;
+    }
+    #inceput-pagina {
+        font-size: 3.5rem;
+    }
+
+    #grid-pagina{
+        grid-template-columns: 1fr 1fr;
+
+        grid-template-areas:
+            "zona1 zona1"
+            "zona2 zona2"
+            "zona8 zona8"
+            "zona5 zona6"
+            "zona4 zona3"
+            "zona7 zona7";
+    }
+}
+
+
+
 
 @media screen and (max-width:700px) {
 
-    body{
-        --margine-pagina:20px;
-        --gap-grid: 10px;
-        font-size: 16px;
-    }
     html {
         font-size: 16px;
     }
 
+    body{
+        --margine-pagina:20px;
+        --gap-grid: 10px;
+        font-size: 1rem;
+    }
+
     #inceput-pagina {
-        font-size: 40px;
+        font-size: 2.5rem;
     }
 
     #grid-pagina{
@@ -378,7 +437,6 @@ footer a {
     }
     * {
         animation: none !important;
-        transition: none !important; 
     }
     .banner-text {
         animation: none !important;

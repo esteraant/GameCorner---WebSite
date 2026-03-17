@@ -1,7 +1,6 @@
-/* animation:none transition:none - pt toate elem care au animatia asociata */
 nav{
-    --latime-buton: 150px;
-    --inaltime-buton: 40px;
+    --latime-buton: 8.33rem; /*150px*/
+    --inaltime-buton: 2.22rem; /*40px;*/
     background-color: var(--culoare-contur);
     width: 100%;
 }
