@@ -1,0 +1,130 @@
+$dimensiune-iconita: 1.1rem;
+$padding-link: 12px 20px;
+$timp-animatie: 0.5s;
+
+%stil-iconita-comun {
+    margin-right: 10px;
+    color: var(--culoare-detalii); 
+    font-size: $dimensiune-iconita;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#meniu-principal {
+    background-color: var(--culoare-contur); 
+
+    #hamburger {
+        display: none; 
+    }
+    
+    .meniu { 
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            position: relative;
+            transition: all $timp-animatie ease;
+
+            a, .nume-meniu {
+                padding: $padding-link;
+                color: white;
+                text-decoration: none;
+                display: block;
+                cursor: pointer;
+
+                i {
+                    @extend %stil-iconita-comun; 
+                }
+            }
+
+            //umbra interna si schimbare culoare la hover
+            &:hover {
+                background-color: var(--culoare-brand); 
+                box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5); //umbra
+                
+                //scalare pe verticala de la 0 la inaltimea totala
+                > .submeniu {
+                    transform: scaleY(1);
+                    opacity: 1;
+                    visibility: visible;
+                }
+
+                i { color: white; }
+            }
+
+            .submeniu {
+                list-style: none; //elimina bulinele
+                margin-left: 0;  
+                padding: 0;
+                
+                position: absolute;
+                top: 100%;
+                background-color: var(--culoare-fundal);
+                min-width: 200px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 100;
+
+
+                // scalare verticala
+                transform: scaleY(0);
+                transform-origin: top; 
+                opacity: 0;
+                visibility: hidden;
+                transition: all $timp-animatie ease-in-out;
+
+                li {
+                    width: 100%; 
+
+                    a {
+                        color: var(--culoare-text);
+                        text-decoration: none;
+                        display: block;
+                        width:100%;
+                        height: 100%;
+                        padding: 10px 20px 10px 45px;
+
+
+
+                        //sageata
+                        &::before {
+                            content: '→';
+                            position: absolute;
+                            left: -20px; 
+                            transition: all 0.3s ease;
+                            opacity: 0;
+                        }
+
+                        i { font-size: 0.9rem; }
+
+                        //sageata arata spre optiune
+                        &:hover {
+                            background-color: var(--culoare-tab-even);
+                            color: aliceblue;
+                            &::before {
+                                left: 15px; //gliseaza spre dreapta
+                                opacity: 1;
+                                color: aliceblue;
+                                    }
+                            }
+                        }
+                }
+
+                //animatie de fade a itemilor
+                @for $i from 1 through 10 {
+                    li:nth-child(#{$i}) {
+                        animation: fade-in-menu 0.3s ease forwards;
+                        animation-delay: #{$i * 0.1}s;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+@keyframes fade-in-menu {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}

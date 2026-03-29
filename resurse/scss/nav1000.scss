@@ -1,0 +1,27 @@
+$dimensiune-iconita-tab: 1.5rem;
+@media screen and (max-width: 1000px) {
+    #meniu-principal {
+        font-size: 0.85rem;
+    }
+    /* ascundem textul pt optiunile principale */
+    .meniu {
+        > li {
+            > a .text-meniu, 
+            > .nume-meniu .text-meniu{
+            display: none;
+            }
+        }
+
+        i {
+            font-size: $dimensiune-iconita-tab;
+            }
+    }
+
+    #hamburger {
+        display: none; 
+    }
+
+    .text-icon{
+        display: none;
+    }
+}

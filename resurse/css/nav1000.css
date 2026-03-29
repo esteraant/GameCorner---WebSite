@@ -1,3 +1,21 @@
-.text-icon{
+@media screen and (max-width: 1000px) {
+  #meniu-principal {
+    font-size: 0.85rem;
+  }
+  /* ascundem textul pt optiunile principale */
+  .meniu > li > a .text-meniu,
+  .meniu > li > .nume-meniu .text-meniu {
     display: none;
+  }
+  .meniu i {
+    font-size: 1.5rem;
+  }
+  #hamburger {
+    display: none;
+  }
+  .text-icon {
+    display: none;
+  }
 }
+
+/*# sourceMappingURL=nav1000.css.map */

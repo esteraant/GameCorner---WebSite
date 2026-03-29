@@ -33,6 +33,11 @@ body {
     overflow-x: hidden; /*prevenirea scroll-ului orizontal*/
 }
 
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 p{
     border:none;
     margin-bottom: 1px;
@@ -114,15 +119,15 @@ footer{
 
 #grid-pagina{
     display: grid;
-    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
     gap: var(--gap-grid);
 
     grid-template-areas:
-        "zona1 zona1 zona1 "
-        "zona2 zona2 zona8 "
-        "zona5 zona6 zona8 "
-        "zona4 zona3 zona7 ";
+        "zona1 zona1 zona1 zona1 zona1"
+        "zona2 zona2 zona2 zona8 zona8"
+        "zona5 zona6 zona6 zona8 zona8 "
+        "zona4 zona4 zona3 zona3 zona7 ";
 }
    
 
@@ -177,7 +182,7 @@ figure.fg-img > img{
 #tab-vanzari{
     border-collapse: collapse;
     width: 100%;
-    min-width:600px;
+    /* min-width:600px; */
     background-color: var(--culoare-fundal);
 }
 
@@ -342,6 +347,7 @@ figure.fg-img > img{
     color: var(--culoare-brand);
     font-weight: 800;
 }
+
 
 .m-op {
     color: var(--culoare-contur);

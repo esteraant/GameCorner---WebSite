@@ -16,6 +16,7 @@
 <body>
     
     <%- include("../fragmente/header.ejs") %>
+    <div id="watermark"></div>
     
     <main> 
         <div id="grid-pagina">
@@ -56,6 +57,7 @@
                     <p><em>Și multe altele!</em> </p>
  
                     <p>Răsfoiește site-ul nostru și mărește-ți colecția de boardgames!</p>
+                    <p>IP-ul utilizatorului: <%- locals.ip %></p>
             </section>
 
             <section id="statistici-vanzari">
