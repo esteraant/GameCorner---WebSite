@@ -16,6 +16,10 @@ body {
     --culoare-tab-odd: rgba(52, 149, 174, 0.1); 
     --culoare-text-footer: #000080;
     --bordura-footer: rgba(255, 255, 255, 0.2);
+
+    --culoare-vizitat: #8e44ad;
+    --c1: rgba(52, 152, 219, 0.4);
+    --culoare-simbol: #e67e22;
     
     background-color: var(--culoare-fundal);
     color: var(--culoare-text);
@@ -355,6 +359,60 @@ figure.fg-img > img{
 }
 
 
+/*     ETAPA 4 - STILIZARE LINK  */
+
+a:visited {
+    color: var(--culoare-vizitat);
+}
+
+a[href^="http"] {
+    position: relative;
+    padding-left: 1.8em; /* spatiu pt sageata */
+}
+
+a[href^="http"]::before {
+    content: "⮳";
+    position: absolute;
+    left: 0;
+    font-size: 1.5em;  /* cu 50% mai mare */
+    transition: color 0.3s ease;
+}
+/* Schimbarea culorii simbolului la hover */
+a[href^="http"]:hover::before {
+    color: var(--culoare-brand); 
+}
+
+/* Gradient */
+main a {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+
+    background-image: radial-gradient(
+        ellipse, 
+        var(--c1) 0%, 
+        var(--c1) 40%,       
+        transparent 80%,  
+        transparent 100% 
+    );
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 0% 0%; 
+    transition: background-size 2.5s ease-in-out;
+    padding: 2px 6px;
+}
+
+/* pata creste la hover */
+main a:hover {
+    background-size: 100% 100%;
+}
+/* border temporar */
+a:active {
+    outline: 2px solid var(--c1); 
+    border-radius: 0px;
+    outline-offset: 2px; /* spatiu intre text si border */
+}
+
 footer p {
     border: none;
     margin: 0;
@@ -371,6 +429,7 @@ footer a {
     text-decoration: underline;
     font-weight: bold;
 }
+
 
 
 @keyframes animatie-titlu {

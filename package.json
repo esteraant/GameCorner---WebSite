@@ -1,7 +1,29 @@
 {
+  "name": "gamecorner",
+  "version": "1.0.0",
+  "description": "GameCorner este un magazin e-commerce dedicat pasionaților de jocuri de societate, oferind un catalog diversificat.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "jocuri de societate",
+    "boardgames România",
+    "GameCorner",
+    "boardgames", 
+    "magazin online jocuri", 
+    "jocuri de strategie", 
+    "jocuri de masă", 
+    "jocuri singleplayer", 
+    "jocuri multiplayer"
+  ],
+  "author": "Beatrice-Estera Antal",
+  "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "ejs": "^5.0.1",
     "express": "^5.2.1",
-    "sass": "^1.98.0"
+    "sass": "^1.98.0",
+    "sharp": "^0.34.5"
   }
 }

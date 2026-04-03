@@ -41,7 +41,7 @@ $timp-animatie: 0.5s;
 
             //umbra interna si schimbare culoare la hover
             &:hover {
-                background-color: var(--culoare-brand); 
+                background-color: var(--culoare-brand);  //schimbare culoare
                 box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5); //umbra
                 
                 //scalare pe verticala de la 0 la inaltimea totala

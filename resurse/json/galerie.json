@@ -1,0 +1,27 @@
+{
+	"cale_galerie":"resurse/imagini/galerie",
+	"imagini": [
+		{
+			"fisier":"activity.jpg",
+			"descriere":"Activity",
+			"luni":["martie","februarie","noiembrie","aprilie", "decembrie","octombrie"]
+		},
+		{
+			"fisier":"alias.jpg",
+			"descriere":"Alias",
+			"luni":["ianuarie","februarie","iunie","octombrie"]
+			
+		},
+		{
+			"fisier":"catan.jpg",
+			"descriere":"Catan",
+			"luni":["ianuarie","noiembrie","iunie","martie","aprilie"]
+		},
+		{
+			"fisier":"uno.jpg",
+			"descriere":"Uno",
+			
+			"luni":["noiembrie","aprilie", "decembrie"]
+		}
+	]
+}

@@ -12,9 +12,6 @@ body {
 
 @media screen and (max-width: 700px) {
 
-    
-
-
     #banner picture, #banner img {
         display: block;
         font-size: 0;
@@ -35,7 +32,7 @@ body {
             height: 50px;
             cursor: pointer;
 
-            /* BONUS */
+            /* bonus */
             .container-hamburger {
                 width: 30px;
                 height: 22px;
@@ -75,10 +72,11 @@ body {
         margin: 0;
         padding: 0;
 
-        transform: scaleY(0);
-        transform-origin: top;
-        transition: transform $timp-animatie-mobil ease-out;
-        transition: visibility 0s $timp-animatie-mobil;
+        transform: translateX(-100%) scaleY(0);
+        transform-origin: top left;
+        transition: transform $timp-animatie-mobil ease-out,
+                    opacity $timp-animatie-mobil ease-out;
+        will-change: transform;
 
         li{
             width: 100%;
@@ -169,10 +167,12 @@ body {
 
     //deschidere meniu
      #ch-menu:checked + .meniu {
-        transform: scaleY(1);
+        transform: translateX(0) scaleY(1);
         visibility: visible;
         pointer-events: auto;
-        transition: transform $timp-animatie-mobil ease-out;
-        transition: visibility 0s 0s;
+        transition: transform $timp-animatie-mobil ease-out, 
+            visibility 0s 0s;
+        will-change: transform;
+        transform-origin: top-left;
     }
 }
