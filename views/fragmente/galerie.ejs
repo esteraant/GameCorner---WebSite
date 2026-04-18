@@ -1,0 +1,26 @@
+<div id="galerie-statica">
+    <% for(let img of imagini) { %>
+        <figure>
+            <picture>
+                <source srcset="<%= img.fisier_mic %>" media="(max-width: 600px)">
+                <source srcset="<%= img.fisier_mediu %>" media="(max-width: 1000px)">
+                <img src="<%= img.fisier %>" 
+                    alt="<%= img.alt ? img.alt : img.cale_imagine %>" 
+                    title="<%= img.descriere %>">
+            </picture>
+            <figcaption>
+                <span class="titlu-imagine"><%= img.titlu %></span>: 
+                <span class="descriere-imagine"><%= img.descriere %></span>
+                <% if(img.autor) { %>
+                    <div class="atribuire">
+                        <small>
+                            Foto: <%= img.autor %> 
+                            (<a href="<%= img.sursa %>" target="_blank">Sursa</a>)
+                            <br>Licență: <%= img.licenta %>
+                        </small>
+                    </div>
+                <% } %>
+            </figcaption>
+        </figure>
+    <% } %>
+</div>

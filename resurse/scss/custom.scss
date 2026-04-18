@@ -1,0 +1,77 @@
+$font-family-base: 'Verdana', sans-serif;
+
+//culori background 
+$primary: #8F5546;
+$secondary: #e3c0b1;
+$success: #DA532C;
+
+// culori de font
+$body-color: #212121;
+$btn-primary-color: #f5f5f5; // pentru butoane
+
+// dimensiuni de ecran diferite
+// mediu (md) si mare (lg)
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 850px,   // de la 768px
+  lg: 1000px,  // de la 992px
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// dimensiunea razelor de border
+$border-radius: 12px;
+$border-radius-lg: 20px;
+
+// dimensiunea heading-urilor
+$h1-font-size: 3.25rem;
+$h2-font-size: 2.25rem;
+$h3-font-size: 1.75rem;
+
+// spatiere
+$spacer: 1.25rem;
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+#efect-css-stilizare-hr {
+    border: none;
+    height: 4px;
+    background: $primary; 
+    width: 90%;
+    margin: 60px auto;
+    position: relative;
+    overflow: visible;
+    opacity: 50%;
+}
+
+/* triunghiul din stanga */
+#efect-css-stilizare-hr::before {
+    content: "";
+    position: absolute;
+    display: block;
+
+    left: 0;
+    top: 50%;
+    transform: translate(-80%, -50%);
+
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 50px solid $primary;
+}
+
+/* triunghiul din dreapta */
+#efect-css-stilizare-hr::after {
+    content: "";
+    position: absolute;
+    display: block;
+
+    right: 0;
+    top: 50%;
+    transform: translate(80%, -50%);
+
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 50px solid $primary;
+}

@@ -21,14 +21,15 @@ console.log("Cale fisier", __filename);
 // Cerinta 13
 obGlobal={
     obErori:null,
-    obImagini:null,
+    obImagini:null, 
+    // Etapa 5 - compilare scss - a)
     folderScss: path.join(__dirname,"resurse/scss"),
     folderCss: path.join(__dirname,"resurse/css"),
     folderBackup: path.join(__dirname,"backup"),
 }
 
 
-//  Cerinta 20
+//  Cerinta 20 - ce foldere trb sa existe obligatoriu la pornire
 vect_foldere=["temp", "logs", "backup", "fisiere_uploadate"]
 
 for(let folder of vect_foldere){
@@ -42,10 +43,33 @@ app.use("/resurse", express.static(path.join(__dirname, "resurse")));  //6. Fold
 app.use("/dist", express.static(path.join(__dirname, "node_modules/dist")));
 //orice caut in /resurse cauta in acest folder
 
+//  Ora curenta pentru galerie 
+function esteInInterval(interval) {
+    const acum = new Date();
+    const oraCurenta = acum.getHours() * 60 + acum.getMinutes();
+    
+    const [start, sfarsit] = interval.split("-");
+    const [hStart, mStart] = start.split(":").map(Number);
+    const [hSfarsit, mSfarsit] = sfarsit.split(":").map(Number);
+    
+    const minStart = hStart * 60 + mStart;
+    const minSfarsit = hSfarsit * 60 + mSfarsit;
+    
+    return oraCurenta >= minStart && oraCurenta <= minSfarsit;
+}
+
 app.get(["/", "/index","/home"], function(req, res){
+    // Filtrare dupa timp
+    let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => esteInInterval(img.timp));
+
+    // Trunchiere la 10 imagini
+    imaginiFiltrate = imaginiFiltrate.slice(0, 10);
+
     res.render("pagini/index", {
         ip:req.ip,                      // Cerinta 16
-        imagini:obGlobal.obImagini.imagini
+        imagini:imaginiFiltrate,
+        caleBaza: obGlobal.obImagini.cale_galerie
+
     });
 });
 
@@ -106,23 +130,157 @@ function initImagini(){
     let vImagini=obGlobal.obImagini.imagini;
     let caleGalerie=obGlobal.obImagini.cale_galerie
 
-    let caleAbs=path.join(__dirname,caleGalerie);
-    let caleAbsMediu=path.join(caleAbs, "mediu");
-    if (!fs.existsSync(caleAbsMediu))
-        fs.mkdirSync(caleAbsMediu);
+    //let caleAbs=path.join(__dirname,caleGalerie);
+
+    // ["mediu", "mic"].forEach(dim => {
+    //     let caleDimAbs = path.join(caleAbs, dim);
+    //     if (!fs.existsSync(caleDimAbs)) {
+    //         fs.mkdirSync(caleDimAbs, { recursive: true });
+    //     }
+    // });
     
-    for (let imag of vImagini){
-        [numeFis, ext]=imag.fisier.split("."); //"ceva.png" -> ["ceva", "png"]
-        let caleFisAbs=path.join(caleAbs,imag.fisier);
-        let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
-        sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
-        imag.fisier_mediu=path.join("/", caleGalerie, "mediu", numeFis+".webp" )
-        imag.fisier=path.join("/", caleGalerie, imag.fisier )
+    // for (let imag of vImagini){
+    //     [numeFis, ext]=imag.cale_imagine.split("."); //"ceva.png" -> ["ceva", "png"]
+    //     let caleFisAbs=path.join(caleAbs,imag.cale_imagine);
+
+    //     // Generam versiunea MEDIE 
+    //     let caleFisMediuAbs = path.join(caleAbs, "mediu", numeFis + ".webp");
+    //     if (!fs.existsSync(caleFisMediuAbs)) {
+    //         sharp(caleFisAbs).resize(400).toFile(caleFisMediuAbs);
+    //     }
+
+    //     // Generam versiunea MICA 
+    //     let caleFisMicAbs = path.join(caleAbs, "mic", numeFis + ".webp");
+    //     if (!fs.existsSync(caleFisMicAbs)) {
+    //         sharp(caleFisAbs).resize(200).toFile(caleFisMicAbs);
+    //     }
+
+
+    //     // Salvam caile relative
+    //     imag.fisier_mediu=path.join("/", caleGalerie, "mediu", numeFis+".webp" )
+    //     imag.fisier_mic = path.join("/", caleGalerie, "mic", numeFis + ".webp");
+    //     imag.fisier=path.join("/", caleGalerie, imag.cale_imagine )
         
+    // }
+
+    //  Pregatirea cailor pt EJS
+    for (let imag of vImagini) {
+        let [numeFis, ext] = imag.cale_imagine.split(".");
+        imag.fisier_mediu = path.join("/", caleGalerie, "mediu", numeFis + ".webp");
+        imag.fisier_mic = path.join("/", caleGalerie, "mic", numeFis + ".webp");
+        imag.fisier = path.join("/", caleGalerie, imag.cale_imagine);
     }
+
+
     // console.log(obGlobal.obImagini)
 }
 initImagini();
+
+function compileazaScss(caleScss, caleCss){
+    // gestionare nume fisier CSS daca lipseste
+    if(!caleCss){
+
+        let numeFisExt=path.basename(caleScss); // "folder1/folder2/a.scss" -> "a.scss"
+        let numeFis=numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
+        caleCss=numeFis+".css"; // output: a.css
+    }
+    
+    // transf in cai absolute daca sunt relative 
+    // cale abs - drumul intreg de la radacina pana la fisier
+    // cale relatica -  drumul catre un fisier pornind din locul in care suntem atunci
+    if (!path.isAbsolute(caleScss))
+        caleScss=path.join(obGlobal.folderScss,caleScss )
+    if (!path.isAbsolute(caleCss))
+        caleCss=path.join(obGlobal.folderCss,caleCss )
+    
+    // pregatire folder backup
+    let caleBackup=path.join(obGlobal.folderBackup, "resurse/css");
+    if (!fs.existsSync(caleBackup)) {
+        fs.mkdirSync(caleBackup,{recursive:true})
+    }
+    
+    // la acest punct avem cai absolute in caleScss si  caleCss
+
+    let numeFisCss=path.basename(caleCss);
+    if (fs.existsSync(caleCss)){
+        let caleDestinatieBackup = path.join(obGlobal.folderBackup, "resurse/css", numeFisCss);
+
+        try {
+            fs.copyFileSync(caleCss, caleDestinatieBackup);
+        } catch (err) {
+            console.error("Eroare backup - Nu s-a putut salva fisierul vechi");
+        }
+    }
+    rez=sass.compile(caleScss, {"sourceMap":true});
+    fs.writeFileSync(caleCss,rez.css)
+    
+}
+
+//la pornirea serverului
+vFisiere=fs.readdirSync(obGlobal.folderScss);
+for( let numeFis of vFisiere ){
+    if (path.extname(numeFis)==".scss"){
+        compileazaScss(numeFis);
+    }
+}
+// compilare pe parcurs
+fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
+    if (numeFis && path.extname(numeFis) === ".scss")
+        if (eveniment=="change" || eveniment=="rename"){
+            let caleCompleta=path.join(obGlobal.folderScss, numeFis);
+            if (fs.existsSync(caleCompleta)){
+                compileazaScss(caleCompleta);
+            }
+        }
+})
+
+
+// async - poate face mai multe lucruri asincron
+app.get("/galerie-statica", async function(req, res) {
+    let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => esteInInterval(img.timp));
+    imaginiFiltrate = imaginiFiltrate.slice(0, 10);
+
+    const caleGalerie = obGlobal.obImagini.cale_galerie;
+    const caleAbs = path.join(__dirname, caleGalerie);
+
+    try {
+        if (!fs.existsSync(path.join(caleAbs, "mediu"))) {
+            fs.mkdirSync(path.join(caleAbs, "mediu"), { recursive: true });
+            console.log("Creat folder mediu");
+        }
+        if (!fs.existsSync(path.join(caleAbs, "mic"))) {
+            fs.mkdirSync(path.join(caleAbs, "mic"), { recursive: true });
+            console.log("Creat folder mic");
+        }
+    } catch (e) {
+        console.error("Eroare la crearea folderelor:", e);
+    }
+
+    // verificam si verificam doar pt imaginile care vor fi afisate acum
+    for (let imag of imaginiFiltrate) {
+        let numeFis = path.basename(imag.fisier, path.extname(imag.fisier)); // extragem numele fara extensie
+        let caleOriginalaAbs = path.join(__dirname, imag.fisier);
+
+        // generare mediu daca nu exista
+        let caleMediuAbs = path.join(caleAbs, "mediu", numeFis + ".webp");
+        if (!fs.existsSync(caleMediuAbs)) {
+            await sharp(caleOriginalaAbs).resize(300).toFile(caleMediuAbs);
+            console.log(`Generat mediu pentru: ${numeFis}`);
+        }
+
+        // generare mic daca nu exista
+        let caleMicAbs = path.join(caleAbs, "mic", numeFis + ".webp");
+        if (!fs.existsSync(caleMicAbs)) {
+            await sharp(caleOriginalaAbs).resize(150).toFile(caleMicAbs);
+            console.log(`Generat mic pentru: ${numeFis}`);
+        }
+    }
+
+    res.render("pagini/galerie-statica", {
+        imagini: imaginiFiltrate,
+        caleBaza: caleGalerie
+    });
+});
 
 app.get("/*pagina", function(req, res){
     console.log("Pagina ceruta", req.url);

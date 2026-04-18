@@ -1,27 +1,135 @@
 {
-	"cale_galerie":"resurse/imagini/galerie",
-	"imagini": [
-		{
-			"fisier":"activity.jpg",
-			"descriere":"Activity",
-			"luni":["martie","februarie","noiembrie","aprilie", "decembrie","octombrie"]
-		},
-		{
-			"fisier":"alias.jpg",
-			"descriere":"Alias",
-			"luni":["ianuarie","februarie","iunie","octombrie"]
-			
-		},
-		{
-			"fisier":"catan.jpg",
-			"descriere":"Catan",
-			"luni":["ianuarie","noiembrie","iunie","martie","aprilie"]
-		},
-		{
-			"fisier":"uno.jpg",
-			"descriere":"Uno",
-			
-			"luni":["noiembrie","aprilie", "decembrie"]
-		}
-	]
+  "cale_galerie": "resurse/imagini/galerie",
+  "imagini": [
+    {
+      "cale_imagine": "activity.jpg",
+      "titlu": "Activity Family Classic",
+      "descriere": "Un amestec distractiv de desen, mimă și descriere verbală.",
+      "timp": "08:00-14:00",
+      "alt": "Cutia jocului Activity Family Classic",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "alias.jpg",
+      "titlu": "Alias Party",
+      "descriere": "Explică termenii prietenilor tăi fără a folosi cuvântul de bază.",
+      "timp": "10:00-18:00",
+      "alt": "Jocul de societate Alias pentru petreceri",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "arcs.jpg",
+      "titlu": "Arcs",
+      "descriere": "O aventură SF strategică într-o galaxie aflată în declin.",
+      "timp": "14:00-22:00",
+      "alt": "Cutia jocului de strategie Arcs",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "azul.jpg",
+      "titlu": "Azul",
+      "descriere": "Plachează pereții palatului regal cu cele mai frumoase plăci ceramice.",
+      "timp": "11:00-17:00",
+      "alt": "Jocul de puzzle Azul cu design de plăci portugheze",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "catan.jpg",
+      "titlu": "Catan - Jocul de bază",
+      "descriere": "Adună resurse și colonizează insula Catan în acest joc clasic.",
+      "timp": "12:00-24:00",
+      "alt": "Cutia jocului de strategie Catan",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "codenames.jpg",
+      "titlu": "Codenames",
+      "descriere": "Găsește toți agenții secreți folosind indicii de un singur cuvânt.",
+      "timp": "15:00-21:00",
+      "alt": "Jocul de deducție Codenames",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "dixit.jpg",
+      "titlu": "Dixit",
+      "descriere": "Folosește-ți imaginația pentru a ghici povestea din spatele ilustrațiilor.",
+      "timp": "17:00-23:00",
+      "alt": "Ilustrație de pe cutia jocului Dixit",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "dobble.jpg",
+      "titlu": "Dobble",
+      "descriere": "Fii cel mai rapid în a găsi simbolul comun între două cărți.",
+      "timp": "08:00-20:00",
+      "alt": "Cutia rotundă a jocului de viteză Dobble",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "marele-carnat.jpg",
+      "titlu": "Marele Cârnat",
+      "descriere": "Un joc românesc plin de umor pentru serile cu prietenii.",
+      "timp": "19:00-02:00",
+      "alt": "Joc de petrecere românesc Marele Cârnat",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "monopoly.jpg",
+      "titlu": "Monopoly România",
+      "descriere": "Construiește hoteluri și devino cel mai bogat proprietar imobiliar.",
+      "timp": "00:00-24:00",
+      "alt": "Versiunea în limba română a jocului Monopoly",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "pandemic.jpg",
+      "titlu": "Pandemic",
+      "descriere": "Colaborează cu echipa pentru a opri răspândirea bolilor pe glob.",
+      "timp": "09:00-15:00",
+      "alt": "Joc cooperativ Pandemic",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "Radio-Questionnaire.jpg",
+      "titlu": "Radio Questionnaire",
+      "descriere": "Un joc vintage din anii '40 care folosește electricitatea pentru a răspunde la întrebări.",
+      "timp": "07:00-20:00",
+      "alt": "Cutia vintage a jocului Radio Questionnaire",
+      "licenta": "Creative Commons Attribution 4.0",
+      "autor": "FPJS - Olivier Merly",
+      "sursa": "https://commons.wikimedia.org/wiki/File:Radio_Questionnaire.png"
+    },
+    {
+      "cale_imagine": "skull.jpg",
+      "titlu": "Skull",
+      "descriere": "Un joc pur de bluff și noroc, cu flori colorate și cranii periculoase.",
+      "timp": "12:00-04:00",
+      "alt": "Design artistic pentru jocul Skull",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "sushi-go.jpg",
+      "titlu": "Sushi Go!",
+      "descriere": "Alege cel mai bun meniu de sushi în acest joc rapid de cărți.",
+      "timp": "11:00-15:00",
+      "alt": "Cutia metalică a jocului Sushi Go!",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "ticket-to-ride.jpg",
+      "titlu": "Ticket to Ride Europa",
+      "descriere": "Construiește rute feroviare prin marile orașe ale Europei.",
+      "timp": "13:00-20:00",
+      "alt": "Jocul de trenuri Ticket to Ride Europe",
+      "licenta": "Public Domain"
+    },
+    {
+      "cale_imagine": "uno.jpg",
+      "titlu": "Uno",
+      "descriere": "Rămâi fără cărți în mână și nu uita să strigi 'UNO'!",
+      "timp": "00:00-24:00",
+      "alt": "Pachetul clasic de cărți Uno",
+      "licenta": "Public Domain"
+    }
+  ]
 }

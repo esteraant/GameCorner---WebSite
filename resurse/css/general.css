@@ -3,6 +3,13 @@ html {
     transition: font-size 0.5s ease-in-out;
 }
 
+::selection {
+    background-color: var(--primary, #8F5546); 
+    color: white; 
+    
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
 body {
     --culoare-brand: #DA532C;
     --culoare-text: #2C3E50;
@@ -19,6 +26,7 @@ body {
 
     --culoare-vizitat: #8e44ad;
     --c1: rgba(52, 152, 219, 0.4);
+    --c2: #fd7049; 
     --culoare-simbol: #e67e22;
     
     background-color: var(--culoare-fundal);
@@ -358,6 +366,39 @@ figure.fg-img > img{
     padding: 0 2px;
 }
 
+/* Etapa 5 - CSS */
+.ticker-container {
+    width: 100%; 
+    background-color: var(--primary, #5d4037); 
+    color: white;
+    padding: 10px 0;
+    
+    /* responsive */
+    overflow: hidden; /* taie tot ce iese in afara*/
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/*textul care se misca */
+.ticker-text {
+    display: inline-block;
+    padding-left: 100%;
+    
+    animation: plimbare-orizontala 10s linear infinite; 
+    font-weight: bold;
+}
+
+.ticker-container:hover .ticker-text {
+    animation-play-state: paused;
+}
+
+@keyframes plimbare-orizontala {
+    0% {
+        transform: translate(0, 0); 
+    }
+    100% {
+        transform: translate(-100%, 0); 
+    }
+}
 
 /*     ETAPA 4 - STILIZARE LINK  */
 
@@ -412,6 +453,180 @@ a:active {
     border-radius: 0px;
     outline-offset: 2px; /* spatiu intre text si border */
 }
+
+
+
+/*          ETAPA 5         */
+#galerie-statica {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 coloane pe ecran mare */
+    grid-gap: 20px;
+    padding: 20px;
+    counter-reset: index-galerie; /* contorul pentru litere */
+}
+
+
+/* coloanele libere */
+#galerie-statica figure:nth-child(5) { grid-column: 1; }
+#galerie-statica figure:nth-child(6) { grid-column: 4; } /* Sare peste coloanele 2 si 3 */
+
+/* Indexarea cu litere mici  */
+#galerie-statica figcaption::before {
+    counter-increment: index-galerie;
+    content: counter(index-galerie, lower-alpha) ") ";
+    font-weight: bold;
+}
+
+/* Imaginile din galerie */
+#galerie-statica img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--culoare-contur);
+}
+
+/* tranzitia */
+#galerie-statica figure {
+    transition: all 1.25s ease-in-out;
+    transform-origin: bottom center; /*granita de jos ramane fixa la marire */
+    margin: 0;
+    padding: 10px;
+    background: var(--culoare-fundal);
+}
+
+#galerie-statica figure:nth-child(even) {
+    background-color: var(--culoare-zona8);
+}
+
+#galerie-statica figure:hover {
+    transform: scale(1.3); /* se muta sus si creste cu 30% */
+    z-index: 10;
+}
+
+#galerie-statica figure:hover figcaption {
+    background-color: var(--culoare-primara); /*schimba culorile la hover */
+    color: var(--culoare-detalii);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#galerie-statica figure:nth-child(even):hover figcaption {
+    color: var(--culoare-brand);
+}
+
+
+#imagine-duotone {
+    position: relative;
+    background-image: url("/resurse/imagini/question.jpg");
+    background-size: cover;
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+/* pseudo-elemente */
+#imagine-duotone::before,
+#imagine-duotone::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 2s ease;
+}
+
+/* culoare 1 */
+#imagine-duotone::before {
+    background-color: var(--c1);
+    mix-blend-mode: darken;
+    transform: translateX(-100%); /* pleaca din stanga */
+}
+
+/* culoare 2 */
+#imagine-duotone::after {
+    background-color: var(--c2);
+    mix-blend-mode: lighten;
+    transform: translateX(100%); /* pleaca din dreapta */
+}
+
+/* hover */
+#imagine-duotone:hover::before {
+    transform: translateX(0);
+}
+
+#imagine-duotone:hover::after {
+    transform: translateX(0);
+}
+
+
+/* REFLEXIE TEXT */
+/* #text-reflectat {
+    display: none;
+} */
+
+#text-reflectat {
+    display: none;
+    font-size:30px;
+    line-height:30px;
+    font-weight: bold;
+}
+#text {
+    position: relative;
+    font-size:30px;
+    line-height: 30px;
+    font-weight: bold;
+    
+}
+@media screen and (min-width: 1000px) {
+    #text-reflectat{
+        display: block;
+        position:absolute;
+        left:0;
+        top:100%;
+        transform-origin:0 0;
+        /*conetaza ordinea transformarilor!*/
+        transform: rotateX(180deg) skew(-45deg) scaleY(0.5) translate(10px,-25px); 
+        opacity:0.55;
+
+        filter: blur(1px); 
+        transition: all 1.25s ease;
+    }
+    #text{	
+	position:relative;
+    }
+
+    #text, #text-reflectat{
+        font-size:50px;
+        line-height:50px;
+        font-weight: bold;
+    }
+
+    #text:hover #text-reflectat {
+        transform: rotateX(180deg) skew(-45deg) scaleY(0.9) translate(10px,-35px);
+        filter: blur(2px);
+}
+}
+
+
+
+/* Stilul pentru cele 2 coloane */
+#promotii .continut-promotii {
+    /* Implicit pe ecran mic si mediu */
+    column-count: 1;
+    text-align: justify;
+    gap: 30px; 
+}
+
+@media screen and (min-width: 1000px) {
+    #promotii .continut-promotii {
+        column-count: 2; 
+        
+        /* linie despartitoare */
+        column-rule: 2px solid var(--culoare-contur); 
+        column-gap: 40px; 
+    }
+}
+
+
 
 footer p {
     border: none;
@@ -473,6 +688,12 @@ footer a {
             "zona4 zona3"
             "zona7 zona7";
     }
+
+    #galerie-statica {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    /* anularea pozitionarii speciale pe ecrane mici */
+    #galerie-statica figure { grid-column: auto !important; }
 }
 
 
@@ -506,4 +727,9 @@ footer a {
     .banner-text {
         animation: none !important;
     }
+
+    #galerie-statica {
+        grid-template-columns: 1fr; 
+    }
 }
+

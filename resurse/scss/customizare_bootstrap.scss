@@ -1,6 +1,48 @@
-@use '../../node_modules/bootstrap/scss/bootstrap.scss' with 
-(
-    $primary: red,
-    $secondary:purple,
-    
-)
+// $culoare-primara:#8F5546 ;
+// $culoare-secundara: #DA532C;
+
+// @use '../../node_modules/bootstrap/scss/bootstrap.scss' with (
+//     $primary: $culoare-primara,
+//     $secondary: $culoare-secundara
+// );
+
+// #efect-css-stilizare-hr {
+//     border: none;
+//     height: 4px;
+//     background: $culoare-primara; 
+//     width: 90%;
+//     margin: 60px auto;
+//     position: relative;
+//     overflow: visible;
+//     opacity: 50%;
+// }
+
+// /* triunghiul din stanga */
+// #efect-css-stilizare-hr::before {
+//     content: "";
+//     position: absolute;
+//     display: block;
+
+//     left: 0;
+//     top: 50%;
+//     transform: translate(-80%, -50%);
+
+//     border-top: 10px solid transparent;
+//     border-bottom: 10px solid transparent;
+//     border-left: 50px solid $culoare-primara;
+// }
+
+// /* triunghiul din dreapta */
+// #efect-css-stilizare-hr::after {
+//     content: "";
+//     position: absolute;
+//     display: block;
+
+//     right: 0;
+//     top: 50%;
+//     transform: translate(80%, -50%);
+
+//     border-top: 10px solid transparent;
+//     border-bottom: 10px solid transparent;
+//     border-right: 50px solid $culoare-primara;
+// }

@@ -25,6 +25,7 @@
                         <h2>Bine ati venit la GameCorner!</h2>
                         <p class="subtitlu">Descoperiți cele mai noi lansări de <b>boardgames România</b>.</p>
                     </hgroup>
+                    
                     <figure>
                         <picture>
                             <source srcset="/resurse/imagini/poza200x200.jpg" media="(max-width:700px)"/>
@@ -57,8 +58,22 @@
                     <p><em>Și multe altele!</em> </p>
  
                     <p>Răsfoiește site-ul nostru și mărește-ți colecția de boardgames!</p>
+
+                    <button type="button" class="btn btn-primary btn-lg">Află mai multe</button>
+                    <button type="button" class="btn btn-outline-primary">Vezi promoții</button>
+
+                    <hr id="efect-css-stilizare-hr">
+
+                    <section id="sectiune-galerie">
+                        <h2>Galerie de Jocuri</h2>
+                        <%- include('../fragmente/galerie.ejs') %>
+                    </section>
+
+                    <hr id="efect-css-stilizare-hr">
+
+
                     <p>IP-ul utilizatorului: <%- locals.ip %></p>
-                    <p><button class= "btn btn-primary">bootstrap</button></p>
+                    <!-- <p><button class= "btn btn-primary">bootstrap</button></p> -->
             </section>
 
             <section id="statistici-vanzari">
@@ -164,9 +179,9 @@
                 
             <section id="noutati">
                     <h2>Noutăți și Lansări</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. 
-                        Dolor sit amet consectetur adipiscing elit quisque faucibus.</p>
-                    <!-- <p>Cele mai noi <b>jocuri de societate</b> tocmai au ajuns în stocul nostru, precum: </p>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+                        Dolor sit amet consectetur adipiscing elit quisque faucibus.</p> -->
+                    <p>Cele mai noi <b>jocuri de societate</b> tocmai au ajuns în stocul nostru, precum: </p>
                     <ul>
                         <li>
                             <strong>Catan</strong> – celebrul joc de strategie și negociere.
@@ -177,10 +192,15 @@
                         <li>
                             <strong>Activity</strong> – un joc clasic al interacțiunii și creativității, ideal pentru seri memorabile cu prietenii.
                         </li>
-                    </ul>-->
+                    </ul>
+
+                    
+
                     <p>Pentru a fi la curent cu topurile mondiale de boardgames, vizitați marea comunitate de iubitori de boardgames 
                             <a href="https://boardgamegeek.com" target="_blank">BoardGameGeek</a>, cea mai mare comunitate 
                             dedicată jocurilor de societate.</p>
+
+                    <hr id="efect-css-stilizare-hr">
                     
                     <section id="tutoriale">
                         <h2>Tutoriale</h2>
@@ -276,20 +296,28 @@
                         <h3>Promoții și Oferte Speciale</h3>
                         <p>Cele mai bune prețuri pentru pasionații de boardgames România</p>
                     </hgroup>
-                    
-                    <p>Profită de reducerile noastre la diverse <b>jocuri de masă</b>.</p>
-                    
-                    <p>Nu rata ocazia de a adăuga în colecția ta <b>Catan</b>, <b>Alias</b> sau seturi de <b>carti de joc</b> la cele mai mici prețuri!</p>
-                    <p><strong>Atenție! Oferta expiră la data de 8 aprilie 2026!</strong> Nu rata ocazia de a cumpăra jocuri cu mecanici de 
-                        <i>worker placement</i> sau <i>area control</i> la prețuri reduse.</p>
-                    
-                    <p>Este <em>esențial</em> să verifici stocul înainte de a plasa comanda, deoarece produsele din categoria 
-                        <b>jocuri de societate</b> se epuizează rapid.</p>
+                    <div class="continut-promotii">
+                        <p>Profită de reducerile noastre la diverse <b>jocuri de masă</b>.</p>
+                        
+                        <p>Nu rata ocazia de a adăuga în colecția ta <b>Catan</b>, <b>Alias</b> sau seturi de <b>carti de joc</b> la cele mai mici prețuri!</p>
+                        <div class="ticker-container">
+                            <div class="ticker-text">
+                                <span>ATENȚIE!!</span>
+                            </div>
+                        </div>
+                        <p><strong>Oferta expiră la data de 8 iunie 2026!</strong> Nu rata ocazia de a cumpăra jocuri cu mecanici de 
+                            <i>worker placement</i> sau <i>area control</i> la prețuri reduse.</p>
+                        
+                        <p>Este <em>esențial</em> să verifici stocul înainte de a plasa comanda, deoarece produsele din categoria 
+                            <b>jocuri de societate</b> se epuizează rapid.</p>
+                    </div>
 
                     <br>
                     <h3>Secretul numerelor 6 și 8 în Catan</h3>
                     <p>Te-ai întrebat de ce pe tabla de joc jetoanele cu <b>6</b> și <b>8</b> sunt singurele scrise cu roșu? Nu e doar design! 
                         Acestea sunt cele mai norocoase numere după cifra 7.</p>
+
+                    <div id="imagine-duotone"></div>
                     
                     <p>Matematic, șansa de a nimeri o anumită sumă (<i>s</i>) când dai cu două zaruri se calculează astfel:</p>
 
