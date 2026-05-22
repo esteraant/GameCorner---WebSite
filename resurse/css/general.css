@@ -285,6 +285,74 @@ figure.fg-img > img{
 }
 
 
+/*      PAGINA PRDUSE */
+.info-prod{
+    display:flex;
+    align-items:flex-start;
+    gap:15px;
+    margin-top:15px;
+}
+
+.coloana-1{
+    flex:1;
+}
+
+.coloana-2{
+    flex:1;
+    min-width:0;
+}
+
+.coloana-1 img{
+    width:180px;
+    display:block;
+}
+
+.descriere-scurta {
+    font-weight: normal !important;
+    text-align: left !important;
+    line-height: 1.5; 
+    margin-top: 10px;
+    color: var(--culoare-text);
+    font-size: 0.9rem;
+}
+
+
+.nume-caracteristica {
+    font-weight: bold;
+    background-color: #e0dede; 
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+
+
+.input-invalid {
+    border: 2px solid red !important;
+    background-color: #ffcccc !important;
+}
+
+.info-caracteristici {
+    list-style-type: none;
+    padding: 0;
+}
+
+.info-caracteristici li {
+    margin-bottom: 5px;
+}
+
+#infoSuma {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #333;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    z-index: 9999;
+}
+
+
 #link-top {
     position: fixed;
     bottom: 30px;
@@ -400,6 +468,68 @@ figure.fg-img > img{
     }
 }
 
+
+
+/*  ETAPA 6 - DARK*/
+
+html[data-tema="dark"] body {
+    --culoare-brand: #e8845a;
+    --culoare-text: #f5e6d3;
+    --culoare-fundal: #1c1008;
+    --culoare-contur: #8F5546;
+    --culoare-detalii: #c49a6c;
+    --culoare-inchisa: #f5e6d3;
+    --culoare-zona1: #2a1a0e;
+    --culoare-zona8: #3d2010;
+    --culoare-tab-even: rgba(143, 85, 70, 0.25);
+    --culoare-tab-odd: rgba(196, 154, 108, 0.25);
+    --culoare-text-footer: #e8c9a0;
+    --c1: rgba(232, 132, 90, 0.3);
+    --c2: #c49a6c;
+
+    background-color: var(--culoare-fundal);
+    color: var(--culoare-text) ;
+}
+
+html[data-tema="dark"] .bg-light,
+html[data-tema="dark"] .bg-white,
+html[data-tema="dark"] section#filtre,
+html[data-tema="dark"] main,
+html[data-tema="dark"] .produs {
+    background-color: #2a1a0e ;
+    color: var(--culoare-text);
+    border-color: var(--culoare-contur) ;
+}
+
+html[data-tema="dark"] label,
+html[data-tema="dark"] p,
+html[data-tema="dark"] h1,
+html[data-tema="dark"] h2,
+html[data-tema="dark"] h3,
+html[data-tema="dark"] h4,
+html[data-tema="dark"] span {
+    color: var(--culoare-text) ;
+}
+
+html[data-tema="dark"] .form-control,
+html[data-tema="dark"] .form-select,
+html[data-tema="dark"] input,
+html[data-tema="dark"] select,
+html[data-tema="dark"] textarea {
+    background-color: #3d2010 ;
+    color: var(--culoare-text) ;
+    border-color: var(--culoare-contur) ;
+}
+
+html[data-tema="dark"] .nume-caracteristica {
+    background-color: #3d2010;
+    color: var(--culoare-text);
+}
+
+html[data-tema="dark"] footer {
+    background-color: #3d2010;
+}
+
 /*     ETAPA 4 - STILIZARE LINK  */
 
 a:visited {
@@ -447,7 +577,7 @@ main a {
 main a:hover {
     background-size: 100% 100%;
 }
-/* border temporar */
+/* border temporar la click */
 a:active {
     outline: 2px solid var(--c1); 
     border-radius: 0px;
@@ -455,6 +585,9 @@ a:active {
 }
 
 
+#meniu-principal ul li ul li a {
+    text-transform: capitalize;
+}
 
 /*          ETAPA 5         */
 #galerie-statica {
@@ -559,9 +692,6 @@ a:active {
 
 
 /* REFLEXIE TEXT */
-/* #text-reflectat {
-    display: none;
-} */
 
 #text-reflectat {
     display: none;
@@ -583,7 +713,7 @@ a:active {
         left:0;
         top:100%;
         transform-origin:0 0;
-        /*conetaza ordinea transformarilor!*/
+        /*conteaza ordinea transformarilor!*/
         transform: rotateX(180deg) skew(-45deg) scaleY(0.5) translate(10px,-25px); 
         opacity:0.55;
 

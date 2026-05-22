@@ -24,11 +24,26 @@ $grid-breakpoints: (
 $border-radius: 12px;
 $border-radius-lg: 20px;
 
+$btn-border-width: 3px;
+$input-border-width: 2px;
+
+$btn-padding-y: .6rem;
+$btn-padding-x: 1.2rem;
+
+$input-padding-y: .5rem;
+$input-padding-x: .8rem;
+
 // dimensiunea heading-urilor
 $h1-font-size: 3.25rem;
 $h2-font-size: 2.25rem;
 $h3-font-size: 1.75rem;
 
+$form-range-thumb-width: 1.5rem;
+$form-range-thumb-height: 1.5rem;
+
+$form-range-thumb-bg: $success; 
+$form-range-track-bg: $secondary; 
+$form-range-thumb-border-radius: 50%;
 // spatiere
 $spacer: 1.25rem;
 

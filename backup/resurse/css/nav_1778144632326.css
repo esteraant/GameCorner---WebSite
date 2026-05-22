@@ -1,0 +1,141 @@
+@charset "UTF-8";
+#meniu-principal .meniu li a i, #meniu-principal .meniu li .nume-meniu i {
+  margin-right: 10px;
+  color: var(--culoare-detalii);
+  font-size: 1.1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#meniu-principal {
+  background-color: var(--culoare-contur);
+}
+#meniu-principal #hamburger {
+  display: none;
+}
+#meniu-principal .meniu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#meniu-principal .meniu li {
+  position: relative;
+  transition: all 0.5s ease;
+}
+#meniu-principal .meniu li a, #meniu-principal .meniu li .nume-meniu {
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+#meniu-principal .meniu li:hover {
+  background-color: var(--culoare-brand);
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+}
+#meniu-principal .meniu li:hover > .submeniu {
+  transform: scaleY(1);
+  opacity: 1;
+  visibility: visible;
+}
+#meniu-principal .meniu li:hover i {
+  color: white;
+}
+#meniu-principal .meniu li .submeniu {
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  background-color: var(--culoare-fundal);
+  min-width: 200px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  transform: scaleY(0);
+  transform-origin: top;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-in-out;
+}
+#meniu-principal .meniu li .submeniu li {
+  width: 100%;
+}
+#meniu-principal .meniu li .submeniu li a {
+  color: var(--culoare-text);
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px 10px 45px;
+}
+#meniu-principal .meniu li .submeniu li a::before {
+  content: "→";
+  position: absolute;
+  left: -20px;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+#meniu-principal .meniu li .submeniu li a i {
+  font-size: 0.9rem;
+}
+#meniu-principal .meniu li .submeniu li a:hover {
+  background-color: var(--culoare-tab-even);
+  color: aliceblue;
+}
+#meniu-principal .meniu li .submeniu li a:hover::before {
+  left: 15px;
+  opacity: 1;
+  color: aliceblue;
+}
+#meniu-principal .meniu li .submeniu li:nth-child(1) {
+  animation: fade-in-menu 0.3s ease forwards;
+  animation-delay: 0.1s;
+}
+#meniu-principal .meniu li .submeniu li:nth-child(2) {
+  animation: fade-in-menu 0.3s ease forwards;
+  animation-delay: 0.2s;
+}
+#meniu-principal .meniu li .submeniu li:nth-child(3) {
+  animation: fade-in-menu 0.3s ease forwards;
+  animation-delay: 0.3s;
+}
+#meniu-principal .meniu li .submeniu li:nth-child(4) {
+  animation: fade-in-menu 0.3s ease forwards;
+  animation-delay: 0.4s;
+}
+#meniu-principal .meniu li .submeniu li:nth-child(5) {
+  animation: fade-in-menu 0.3s ease forwards;
+  animation-delay: 0.5s;
+}
+#meniu-principal .meniu li .submeniu li:nth-child(6) {
+  animation: fade-in-menu 0.3s ease forwards;
+  animation-delay: 0.6s;
+}
+#meniu-principal .meniu li .submeniu li:nth-child(7) {
+  animation: fade-in-menu 0.3s ease forwards;
+  animation-delay: 0.7s;
+}
+#meniu-principal .meniu li .submeniu li:nth-child(8) {
+  animation: fade-in-menu 0.3s ease forwards;
+  animation-delay: 0.8s;
+}
+#meniu-principal .meniu li .submeniu li:nth-child(9) {
+  animation: fade-in-menu 0.3s ease forwards;
+  animation-delay: 0.9s;
+}
+#meniu-principal .meniu li .submeniu li:nth-child(10) {
+  animation: fade-in-menu 0.3s ease forwards;
+  animation-delay: 1s;
+}
+
+@keyframes fade-in-menu {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

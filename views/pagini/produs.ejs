@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="description" content="Descoperă detaliile complete pentru <%- locals.prod.nume %>, disponibil acum pe GameCorner.">
+        <meta name="keywords" content="GameCorner, boardgames, <%- locals.prod.tip_joc %>, <%- locals.prod.categorie %>, <%- locals.prod.nume %>">
+        
+        <title>GameCorner - <%- locals.prod.nume %></title>
+        <%- include("../fragmente/head") %>     
+        <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+    </head>
+
+        <%- include("../fragmente/header") %>
+    
+    
+    <main>
+        <section>
+            <h2>Pagină produs</h2>
+            <article id="art-produs">
+                <h3>
+                    <span class="nume">
+                        <%- locals.prod.nume %>
+                    </span>
+                </h3>
+
+                <p>
+                    Preț:
+                    <span class="pret">
+                        <%- locals.prod.pret %> lei
+                    </span>
+                </p>
+
+                <p>
+                    Descriere:
+                    <span class="descriere">
+                        <%- locals.prod.descriere %>
+                    </span>
+                </p>
+
+                <p>
+                    Durata jocului:
+                    <span class="durata">
+                        <%- locals.prod.durata_minute %> minute
+                    </span>
+                </p>
+
+                <p>
+                    Număr jucători:
+                    <span class="jucatori">
+                        <%- locals.prod.min_jucatori %> -
+                        <%- locals.prod.max_jucatori %>
+                    </span>
+                </p>
+
+                <p>
+                    Vârsta minimă:
+                    <span class="varsta">
+                        <%- locals.prod.varsta_minima %>+
+                    </span>
+                </p>
+
+                <p>
+                    Complexitate:
+                    <span class="complexitate">
+                        <%- locals.prod.complexitate %> 
+                    </span>
+                </p>
+
+                <p>
+                    Tip joc:
+                    <span class="tip_joc">
+                        <%- locals.prod.tip_joc %>
+                    </span>
+                </p>
+
+                <p>
+                    Categorie:
+                    <span class="categorie">
+                        <%- locals.prod.categorie %>
+                    </span>
+                </p>
+
+                <p>
+                    Componente:
+                    <span class="componente">
+                        <%- locals.prod.componente %>
+                    </span>
+                </p>
+
+                <p>
+                    Mod solo:
+                    <span class="solo">
+                        <%- locals.prod.are_mod_solo ? "Da" : "Nu" %>
+                    </span>
+                </p>
+
+                <p>
+                    Data adăugării:
+                    <span class="data">
+                        <%- locals.prod.data_adaugarii %>
+                    </span>
+                </p>
+
+                <figure class="imag-produs">
+                    <img
+                        src="/resurse/imagini/produse/<%- locals.prod.imagine %>"
+                        alt="imagine <%- locals.prod.nume %>"
+                    />
+                </figure>
+
+            </article>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

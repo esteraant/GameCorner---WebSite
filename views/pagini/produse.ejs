@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="description" content="GameCorner oferă o selecție vastă de jocuri de societate, de la strategii complexe la party-games distractive.">
+        <meta name="keywords" content="jocuri de societate, boardgames, GameCorner, strategie, party-game, puzzle">
+        <link rel="stylesheet" href="/resurse/css/custom.css">
+        <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
+        <title>GameCorner - Produse</title>
+        <%- include("../fragmente/head") %>     
+        <script type="text/javascript" src=/resurse/js/produse.js></script>
+        <script type="text/javascript" src=/resurse/js/produse-cos.js></script>
+
+    </head>
+    <body>
+
+
+    <%- include("../fragmente/header") %>
+
+    <main>
+        <section class="container mt-4">
+            <div class="row g-3">
+
+                <!-- a. text -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label class="form-label"> Nume joc </label>
+                    <!-- caseta in care utilizatorul scrie -->
+                    <input type="text" id="inp-nume" class="form-control">
+                </div>
+
+                <!-- d. inputuri de tip radio -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label class="form-label">Durată joc:</label>
+                    <div>
+                        <p><label><input id="i_rad1" name="gr_rad" value="0:30" type="radio"/> Rapid (sub 30 min)</label></p>
+                        <p><label><input id="i_rad2" name="gr_rad" value="30:90" type="radio"/> Mediu (30-90 min)</label></p>
+                        <p><label><input id="i_rad3" name="gr_rad" value="90:10000" type="radio"/> Lung (peste 90 min)</label></p>
+                        <p><label><input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/> Toate</label></p>
+                    </div>
+                </div>
+
+                <!-- h. select multiplu pentru varsta minima-->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label>Vârstă minimă:
+                        <select id="inp-varsta" class="form-select" multiple>
+                            <option value="toate" selected>oricare</option>
+                            <option value="6">6+</option>
+                            <option value="8">8+</option>
+                            <option value="10">10+</option>
+                            <option value="12">12+</option>
+                            <option value="14">14+</option>
+                        </select>
+                    </label>
+                </div>
+
+                <!-- b. range cu min/max/valoare afisate -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label class="form-label">Preț minim:</label>
+                    <!-- un rand flexbox care aliniaza pe orizontala, adaugand un spatiu intre ele-->
+                    <div class="d-flex align-items-center gap-2">
+                        <span>0</span>
+                        <input type="range" id="inp-pret" class="form-range flex-grow-1" min="0" max="500" value="0">
+                        <span>500</span>
+                        <span id="infoRange">(0)</span>
+                    </div>
+                </div>
+                
+                <!-- g. select simplu pentru complexitate -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label>Complexitate:
+                        <select id="inp-complexitate" class="form-select">
+                            <option selected value="toate">oricare</option>
+                            <option value="ușor">Ușor</option>
+                            <option value="mediu">Mediu</option>
+                            <option value="greu">Greu</option>
+                            <option value="expert">Expert</option>
+                        </select>
+                    </label>
+                </div>
+
+                <!-- c. datalist pentru nr_jucatori -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label>Număr jucători:
+                        <input type="text" id="inp-nr-jucatori" class="form-control" list="lista-nr-jucatori">
+                        <datalist id="lista-nr-jucatori">
+                            <option value="1">
+                            <option value="2">
+                            <option value="3">
+                            <option value="4">
+                            <option value="5">
+                            <option value="6">
+                            <option value="7">
+                            <option value="8">
+                            <option value="9">
+                            <option value="10">
+                            <option value="11">
+                            <option value="12">
+                        </datalist>
+                    </label>
+                </div>
+
+                <!-- e. checkbox cu radio are/nu are pentru categorii (valori multiple) -->
+                <div class="col-12">
+                    <div id="filtru-categorii">
+                        <p>Filtrare după categorii:</p>
+                        <% let categVal = ['strategie','multiplayer','singleplayer','actiune','puzzle','cooperativ','economic']; %>
+                        <% for (let cat of categVal) { %>
+                            <div class="mb-2">
+                                <input type="checkbox" class="btn-check chk-cat" id="chk-<%- cat %>" 
+                                    value="<%- cat %>" autocomplete="off">
+                                <label class="btn btn-outline-primary btn-sm" for="chk-<%- cat %>"><%- cat %></label>
+
+                                <input
+                                    type="radio"
+                                    class="btn-check"
+                                    name="rad-<%- cat %>"
+                                    id="are-<%- cat %>"
+                                    value="are"
+                                    checked>
+                                <label
+                                    class="btn btn-outline-success btn-sm"
+                                    for="are-<%- cat %>">
+                                    are
+                                </label>
+
+
+                                <input
+                                    type="radio"
+                                    class="btn-check"
+                                    name="rad-<%- cat %>"
+                                    id="nuare-<%- cat %>"
+                                    value="nu are">
+                                <label
+                                    class="btn btn-outline-danger btn-sm"
+                                    for="nuare-<%- cat %>">
+                                    nu are
+
+                                </label>
+
+                            </div>
+
+                        <% } %>
+                    </div>
+                </div>
+
+                <!-- f. textarea pentru notite/comentariu filtru -->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Scrie aici..." id="inp-note" style="height: 100px"></textarea>
+                        <label for="inp-note">Notițe căutare (minim 3 caractere)</label>
+                    </div>
+                </div>
+            
+
+            <div class="col-12">
+                <!-- d- display -->
+                <div class="d-flex flex-wrap gap-2 mt-3">
+
+                    <button id="filtrare"
+                        class="btn btn-primary btn-md">
+                        <i class="bi bi-funnel-fill"></i>
+                        <span class="d-none d-md-inline">Filtrează</span>
+                    </button>
+
+                    <button id="resetare"
+                        class="btn btn-secondary btn-md">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        <span class="d-none d-md-inline">Resetează</span>
+                    </button>
+
+
+                    <button id="sortCrescNume"
+                        class="btn btn-success btn-md">
+                        <i class="bi bi-sort-up"></i>
+                        <span class="d-none d-md-inline">
+                            Sortează crescător
+                        </span>
+                    </button>
+
+                    <button id="sortDescrescNume"
+                        class="btn btn-success btn-md">
+                        <i class="bi bi-sort-down"></i>
+                        <span class="d-none d-md-inline">
+                            Sortează descrescător
+                        </span>
+                    </button>
+
+                    <button id="calculeaza"
+                        class="btn btn-primary btn-md">
+                        <i class="bi bi-calculator-fill"></i>
+                        <span class="d-none d-md-inline">
+                            Calculează suma
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        </section>
+
+
+        <section id="produse">
+            <h2>Colecția de Jocuri</h2>
+            <div class="grid-produse">
+                
+                <div id="mesaj-lipsa-produse" class="alert alert-warning text-center my-4 d-none w-100 shadow-sm">
+                    <i class="bi bi-exclamation-triangle-fill fs-4 d-block mb-2 text-warning"></i>
+                    <strong>Ne pare rău!</strong> Nu există produse care să corespundă filtrelor selectate de tine.
+                </div>
+
+                <% for( let joc of locals.produse) { %>
+                    <!-- de exemplu pt party-game il converteste in partygame -->
+                    <article class="produs <%- joc.tip_joc.replace('-','') %>" id="artc-<%- joc.id %>">
+                        <span class="val-durata" style="display:none"><%- joc.durata_minute %></span>
+                        <span class="val-varsta" style="display:none"><%- joc.varsta_minima %></span>
+                        <span class="min_jucatori" style="display:none"><%- joc.min_jucatori %></span>
+                        <span class="max_jucatori" style="display:none"><%- joc.max_jucatori %></span>
+                        <h3 class="nume"><a href="/produs/<%- joc.id %>"><span class="val-nume"><%- joc.nume %></span></a></h3>
+                        
+                        <div class="info-prod">
+                            <div class="coloana-1">
+
+                                <figure>
+                                    <a href="/produs/<%- joc.id %>">
+                                        <img src="/resurse/imagini/produse/<%- joc.imagine %>" style="width:100%; height:auto;" alt="[imagine <%- joc.nume %>]" />
+                                    </a>
+                                </figure>
+
+                                <ul class="info-caracteristici">
+                                    <li><span class="nume-caracteristica">Preț:</span><span class="val-pret"><%- joc.pret %></span> RON</li>
+                                    <li><span class="nume-caracteristica">Durată:</span> <span class="val-durata"><%- joc.durata_minute %></span> min</li>
+                                    <li><span class="nume-caracteristica">Complexitate:</span> <span class="val-complexitate"><%- joc.complexitate %></span></li>
+                                    <li><span class="nume-caracteristica">Categorii:</span> 
+                                        <span class="val-categorie"><%- joc.categorie.join(", ") %></span>
+                                    </li>
+                                    <li><span class="nume-caracteristica">Data adăugării:</span> 
+                                        <time datetime="<%- joc.data_adaugarii %>"><%- joc.data_formatata %></time>
+                                    </li>
+                                    <li><span class="nume-caracteristica">Mod Solo:</span> 
+                                        <span class="val-solo"><%- joc.are_mod_solo ? 'Da' : 'Nu' %></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="coloana-2">
+                                <p class="categorie-mare">Categorie: <strong><%- joc.tip_joc %></strong></p>
+                                <p class="descriere-scurta"><%- joc.descriere %></p>
+                            </div>
+
+                        <!-- <label class="selecteaza-cos">
+                            Selectează pentru comparare:<br/>
+                            <input type="checkbox" class="select-cos" value="<%- joc.id %>" autocomplete="off">
+                        </label> -->
+                    </article>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

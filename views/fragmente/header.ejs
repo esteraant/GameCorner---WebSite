@@ -36,12 +36,19 @@
                         <span class="text-meniu">Produse</span>
                     </div>
                     <ul class="submeniu">
-                        <li><a href="/index#statistici-vanzari"> Top Vânzări</a></li>
-                        <li><a href="/index#evenimente"> Evenimente</a></li>
-                        <li><a href="/index#promotii"> Promoții</a></li>
+                        <li><a href="/produse">Toate</a></li>
+                            <% for(let opt of locals.optiuni) { %>
+                                <li>
+                                    <!-- cream linkul catre pagina de produse -->
+                                    <a href="/produse?tip=<%- opt.nume_categorie %>">
+                                        <%- opt.nume_categorie %>
+                                    </a>
+                                </li>
+                            <% } %>
                     </ul>
                 </li>
 
+                
                 <li><a href="/despre">
                     <i class="fa-solid fa-circle-info"></i> 
                         <span class="text-meniu">Despre noi</span>
@@ -53,9 +60,14 @@
                         <span class="text-meniu">Contact</span>
                     </a> 
                 </li> 
+           
             </ul>
           
+            
         </nav>
+
+        
+
         <section id="banner">
             <picture>
                 <source srcset="/resurse/imagini/banner700x400.jpg" media="(max-width:700px)">
@@ -63,9 +75,20 @@
                 <img src="/resurse/imagini/bannerMAX.jpg" alt="Banner">
             </picture>
 
+            
             <div class="banner-text">
                 <h1 id="inceput-pagina">GameCorner</h1>
                 
             </div>
         </section>
+
+        <div class="container-switch-tema text-end my-3">
+            <div class="form-check form-switch d-inline-flex align-items-center gap-2 p-2 rounded shadow-sm zona-selector-tema">
+                <input class="form-check-input m-0" type="checkbox" role="switch" id="switch-tema" style="cursor: pointer; transform: scale(1.25);">
+                <label class="form-check-label" for="switch-tema" style="cursor: pointer;">
+                    <i id="icon-tema" class="fa-solid fa-sun text-warning fs-5"></i>
+                </label>
+            </div>
+        </div>
+        
     </header>
