@@ -5,7 +5,10 @@ const {RolFactory}=require('./roluri.js');
 const crypto=require("crypto");
 const nodemailer=require("nodemailer");
 
-
+/**
+ * Clasa Utilizator reprezinta un utilizator al aplicatiei
+ * Ofera metode de interactiune cu baza de date si de verificare a datelor
+ */
 class Utilizator{
     static tipConexiune="local";
     static tabel="utilizatori"
@@ -14,6 +17,20 @@ class Utilizator{
     static lungimeCod=64;
     static numeDomeniu="localhost:8080";
     #eroare;
+
+    /**
+     * Creeaza o instanta de Utilizator
+     * @param {Object} param - Datele utilizatorului
+     * @param {number} param.id - ID-ul utilizatorului
+     * @param {string} param.username - Username-ul
+     * @param {string} param.nume - Numele
+     * @param {string} param.prenume - Prenumele
+     * @param {string} param.email - Adresa de email
+     * @param {string} param.parola - Parola 
+     * @param {string|Object} param.rol - Rolul utilizatorului
+     * @param {string} [param.culoare_chat="black"] - Culoarea in chat
+     * @param {string} param.poza - Calea catre poza de profil
+     */
 
     constructor({id, username, nume, prenume, email, parola, rol, culoare_chat="black", poza}={}) {
         this.id=id;
@@ -37,10 +54,16 @@ class Utilizator{
         this.#eroare="";
     }
 
+    /**
+     * Verifica daca numele respecta formatul cerut (prima litera mare, restul mici)
+     * @param {string} nume - Numele de verificat
+     * @returns {boolean} true daca e valid, false altfel
+     */
     checkName(nume){
         return nume!="" && nume.match(new RegExp("^[A-Z][a-z]+$")) ;
     }
 
+    // set-permite modif numelui
     set setareNume(nume){
         if (this.checkName(nume)) this.nume=nume
         else{
@@ -48,9 +71,7 @@ class Utilizator{
         }
     }
 
-    /*
-    * folosit doar la inregistrare si modificare profil
-    */
+  
     set setareUsername(username){
         if (this.checkUsername(username)) this.username=username
         else{
@@ -58,15 +79,33 @@ class Utilizator{
         }
     }
 
+     /**
+     * Verifica daca username-ul contine doar caractere permise; folosit doar la inregistrare si modificare profil
+     * @param {string} username - Username-ul de verificat
+     * @returns {boolean} true daca e valid, false altfel
+     */
     checkUsername(username){
         return username!="" && username.match(new RegExp("^[A-Za-z0-9#_./]+$")) ;
     }
 
+    /**
+     * Cripteaza o parola folosind scrypt
+     * @param {string} parola - Parola de criptat
+     * @returns {string} Parola criptata in format hex
+     */
     static criptareParola(parola){
         return crypto.scryptSync(parola,Utilizator.parolaCriptare,Utilizator.lungimeCod).toString("hex");
     }
 
-    salvareUtilizator(){
+    /**
+     * Salveaza utilizatorul in baza de date si trimite mail de confirmare
+     * @returns {void}
+     */
+    async salvareUtilizator(){
+       
+        let utilizExistent = await Utilizator.getUtilizDupaUsernameAsync(this.username);
+        if(utilizExistent)
+            throw new Error("Username-ul exista deja!");
         let parolaCriptata=Utilizator.criptareParola(this.parola);
         let utiliz=this;
         let token=parole.genereazaToken(100);
@@ -92,6 +131,14 @@ class Utilizator{
 //xjxwhotvuuturmqm
 
 
+    /**
+     * Trimite un email utilizatorului
+     * @param {string} subiect - Subiectul emailului
+     * @param {string} mesajText - Continutul plain text
+     * @param {string} mesajHtml - Continutul HTML
+     * @param {Array} [atasamente=[]] - Lista de atasamente
+     * @returns {Promise<void>}
+     */
     async trimiteMail(subiect, mesajText, mesajHtml, atasamente=[]){
         var transp= nodemailer.createTransport({
             service: "gmail",
@@ -116,6 +163,11 @@ class Utilizator{
         console.log("trimis mail");
     }
    
+    /**
+     * Cauta un utilizator dupa username, varianta asincrona
+     * @param {string} username - Username-ul cautat
+     * @returns {Promise<Utilizator|null>} Utilizatorul gasit sau null
+     */
     static async getUtilizDupaUsernameAsync(username){
         if (!username) return null;
         try{
@@ -138,6 +190,14 @@ class Utilizator{
         }
         
     }
+
+     /**
+     * Cauta un utilizator dupa username 
+     * @param {string} username - Username-ul cautat
+     * @param {Object} obparam - Obiect cu date suplimentare ex: parola
+     * @param {function(Utilizator, Object, number): void} proceseazaUtiliz - Callback de procesare
+     * @returns {void}
+     */
     static getUtilizDupaUsername (username,obparam, proceseazaUtiliz){
         if (!username) return null;
         let eroare=null;
@@ -160,8 +220,86 @@ class Utilizator{
         });
     }
 
+    /**
+     * Verifica daca utilizatorul are un anumit drept
+     * @param {Symbol} drept - Dreptul de verificat (din drepturi.js)
+     * @returns {boolean} true daca are dreptul, false altfel
+     */
     areDreptul(drept){
         return this.rol.areDreptul(drept);
+    }
+
+
+    /**
+     * Sterge utilizatorul din baza de date
+     * @returns {void}
+     * @throws {Error} Daca utilizatorul nu exista
+     */
+    sterge() {
+        AccesBD.getInstanta(Utilizator.tipConexiune).delete({
+            tabel: Utilizator.tabel,
+            conditiiAnd: [`id=${this.id}`]
+        }, function(err, rez) {
+            if(err) throw new Error("Utilizatorul nu există sau nu a putut fi șters");
+        });
+    }
+
+    /**
+     * Modifica datele utilizatorului in baza de date
+     * @param {Object} dateNoi - Obiect cu campurile de actualizat
+     * @returns {void}
+     * @throws {Error} Daca utilizatorul nu exista
+     */
+    modifica(dateNoi) {
+        AccesBD.getInstanta(Utilizator.tipConexiune).update({
+            tabel: Utilizator.tabel,
+            campuri: dateNoi,
+            conditiiAnd: [`id=${this.id}`]
+        }, function(err, rez) {
+            if(err) throw new Error("Utilizatorul nu există");
+        });
+    }
+
+    /**
+     * Cauta utilizatori dupa mai multe criterii, varianta sincrona
+     * @param {Object} obParam - Obiect cu proprietatile de cautare (cele undefined sunt ignorate)
+     * @param {function(Error, Utilizator[]): void} callback - Callback cu lista de utilizatori gasiti
+     * @returns {void}
+     */
+    static cauta(obParam, callback) {
+        let conditii = [];
+        for(let prop in obParam) {
+            if(obParam[prop] !== undefined)
+                conditii.push(`${prop}='${obParam[prop]}'`);
+        }
+        AccesBD.getInstanta(Utilizator.tipConexiune).select({
+            tabel: Utilizator.tabel,
+            campuri: ['*'],
+            conditiiAnd: conditii
+        }, function(err, rez) {
+            if(err) callback(err, []);
+            else callback(null, rez.rows.map(r => new Utilizator(r)));
+        });
+    }
+
+     /**
+     * Cauta utilizatori dupa mai multe criterii, varianta asincrona
+     * @param {Object} obParam - Obiect cu proprietatile de cautare
+     * @returns {Promise<Utilizator[]>} Lista utilizatorilor gasiti (poate fi vida)
+     */
+    static async cautaAsync(obParam) {
+        let conditii = [];
+        for(let prop in obParam) {
+            if(obParam[prop] !== undefined)
+                conditii.push(`${prop}='${obParam[prop]}'`);
+        }
+        let rez = await AccesBD.getInstanta(Utilizator.tipConexiune).selectAsync({
+            tabel: Utilizator.tabel,
+            campuri: ['*'],
+            conditiiAnd: conditii
+        });
+        if(!rez) return [];
+        return rez.rows.map(r => new Utilizator(r));
     }
 }
 module.exports={Utilizator:Utilizator}

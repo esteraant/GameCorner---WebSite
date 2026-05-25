@@ -1,16 +1,30 @@
-/*
-
-ATENTIE!
-inca nu am implementat protectia contra SQL injection
-*/
-
 const {Client, Pool}=require("pg");
+
+/**
+ * Clasa Singleton pentru accesarea bazei de date PostgreSQL
+ */
+
+/**
+     * @typedef {object} ObiectQuerySelect
+     * @property {string} tabel
+     * @property {string[]} campuri
+     * @property {string[]} conditiiAnd
+ */
+
+ /**
+     * @typedef {object} ObiectConexiune
+     * @property {string} init
+ */
 
 
 class AccesBD{
     static #instanta=null;
     static #initializat=false;
 
+    /**
+     * Constructor privat, arunca eroare daca clasa e deja instantiata
+     * @throws {Error} Daca instanta exista deja
+     */
     constructor() {
         if(AccesBD.#instanta){
             throw new Error("Deja a fost instantiat");
@@ -20,37 +34,7 @@ class AccesBD{
         }
     }
 
-    initLocal(){
-        this.client= new Client({database:"cti_2026",
-            user:"irina", 
-            password:"irina", 
-            host:"localhost", 
-            port:5433}
-        );//atentie e posibil sa aveti nevoie sa schimbati portul in 5432
-        this.client.connect();
-
-        
-        // Exemplu de alt tip de conexiune:
-        // this.client2= new Pool({database:"laborator",
-        //         user:"irina", 
-        //         password:"irina", 
-        //         host:"localhost", 
-        //         port:5432});
-        
-    }
-
-    getClient(){
-        if(!AccesBD.#instanta ){
-            throw new Error("Nu a fost instantiata clasa");
-        }
-        return this.client;
-    }
-
-    /**
-     * @typedef {object} ObiectConexiune - obiect primit de functiile care realizeaza un query
-     * @property {string} init - tipul de conexiune ("init", "render" etc.)
-     * 
-     * /
+   
 
     /**
      * Returneaza instanta unica a clasei
@@ -59,7 +43,6 @@ class AccesBD{
      * @returns {AccesBD}
      */
     static getInstanta({init="local"}={}){
-        console.log(this);//this-ul e clasa nu instanta pt ca metoda statica
         if(!this.#instanta){
             this.#initializat=true;
             this.#instanta=new AccesBD();
@@ -82,30 +65,42 @@ class AccesBD{
         return this.#instanta;
     }
 
-
-
-
     /**
-     * @typedef {object} ObiectQuerySelect - obiect primit de functiile care realizeaza un query
-     * @property {string} tabel - numele tabelului
-     * @property {string []} campuri - o lista de stringuri cu numele coloanelor afectate de query; poate cuprinde si elementul "*"
-     * @property {string[]} conditiiAnd - lista de stringuri cu conditii pentru where
+     * Initializeaza conexiunea locala la baza de date
+     * @returns {void}
      */
 
+    initLocal(){
+        this.client= new Client({database:"cti_2026",
+            user:"estera", 
+            password:"tehiniciweb", 
+            host:"localhost", 
+            port:5432}
+        );
+        this.client.connect();
+        
+    }
 
-    
     /**
-     * callback pentru queryuri.
-     * @callback QueryCallBack
-     * @param {Error} err Eventuala eroare in urma queryului
-     * @param {Object} rez Rezultatul query-ului
+     * Returneaza clientul de conexiune la baza de date
+     * @returns {import('pg').Client} Clientul bazei de date
+     * @throws {Error} Daca clasa nu a fost instantiata
      */
+
+    getClient(){
+        if(!AccesBD.#instanta ){
+            throw new Error("Nu a fost instantiata clasa");
+        }
+        return this.client;
+    }
+
     /**
      * Selecteaza inregistrari din baza de date
-     *
-     * @param {ObiectQuerySelect} obj - un obiect cu datele pentru query
-     * @param {QueryCallBack} callback - o functie callback cu 2 parametri: eroare si rezultatul queryului
+     * @param {ObiectQuerySelect} obj- Parametrii query-ului
+     * @param {function(Error, Object): void} callback - Functie callback cu eroare si rezultat
+     * @returns {void}
      */
+
     select({tabel="",campuri=[],conditiiAnd=[]} = {}, callback, parametriQuery=[]){
         let conditieWhere="";
         if(conditiiAnd.length>0)
@@ -120,8 +115,12 @@ class AccesBD{
         this.client.query(comanda,parametriQuery, callback)
     }
 
+    /**
+     * Selecteaza inregistrari asincron din baza de date
+     * @param {ObiectQuerySelect} obj - Parametrii query-ului
+     * @returns {Promise<Object|null>} Rezultatul query-ului sau null daca a aparut o eroare
+     */
 
-    
     async selectAsync({tabel="",campuri=[],conditiiAnd=[]} = {}){
         let conditieWhere="";
         if(conditiiAnd.length>0)
@@ -139,15 +138,17 @@ class AccesBD{
             return null;
         }
     }
+
+    /**
+     * Insereaza o inregistrare in tabel
+     * @param {Object} obj - Parametrii inserarii
+     * @param {string} obj.tabel - Numele tabelului
+     * @param {Object} obj.campuri - Obiect cu perechile camp-valoare de inserat
+     * @param {function(Error, Object): void} callback - Functie callback cu eroare si rezultat
+     * @returns {void}
+     */
+
     insert({tabel="",campuri={}} = {}, callback){
-        /*
-        Exemplu:
-        campuri={
-            nume:"savarina",
-            pret: 10,
-            calorii:500
-        }
-        */
         console.log("-------------------------------------------")
         console.log(Object.keys(campuri).join(","));
         console.log(Object.values(campuri).join(","));
@@ -156,12 +157,7 @@ class AccesBD{
         this.client.query(comanda,callback)
     }
 
-    /**
-     * @typedef {object} ObiectQuerySelect - obiect primit de functiile care realizeaza un query
-     * @property {string} tabel - numele tabelului
-     * @property {string []} campuri - o lista de stringuri cu numele coloanelor afectate de query; poate cuprinde si elementul "*"
-     * @property {string[]} conditiiAnd - lista de stringuri cu conditii pentru where
-     */   
+     
     // update({tabel="",campuri=[],valori=[], conditiiAnd=[]} = {}, callback, parametriQuery){
     //     if(campuri.length!=valori.length)
     //         throw new Error("Numarul de campuri difera de nr de valori")
@@ -175,6 +171,13 @@ class AccesBD{
     //     console.log(comanda);
     //     this.client.query(comanda,callback)
     // }
+
+    /**
+     * Actualizeaza inregistrari in tabel
+     * @param {ObiectQuerySelect} obj
+     * @param {function(Error, Object): void} callback - Functie callback cu eroare si rezultat
+     * @returns {void}
+     */
 
     update({tabel="",campuri={}, conditiiAnd=[]} = {}, callback, parametriQuery){
         let campuriActualizate=[];
@@ -214,6 +217,13 @@ class AccesBD{
     //     let comanda=`update ${tabel} set ${campuriActualizate.join(", ")}  ${conditieWhere}`;
     //     this.client.query(comanda,valori, callback)
     // }
+
+    /**
+     * Sterge inregistrari din tabel
+     * @param {ObiectQuerySelect} obj
+     * @param {function(Error, Object): void} callback - Functie callback cu eroare si rezultat
+     * @returns {void}
+     */
 
     delete({tabel="",conditiiAnd=[]} = {}, callback){
         let conditieWhere="";

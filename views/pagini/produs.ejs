@@ -109,6 +109,17 @@
 
             </article>
         </section>
+
+        <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof setCookie === "function") {
+            setCookie("ultimul_produs", "<%- locals.prod.id %>", 7 * 24 * 60 * 60 * 1000);
+            setCookie("ultimul_produs_nume", "<%- locals.prod.nume %>", 7 * 24 * 60 * 60 * 1000);
+        } else {
+            console.error("Eroare: Functia setCookie nu a fost gasita in pagina.");
+        }
+    });
+</script>
     </main>
 
     <%- include("../fragmente/footer") %>

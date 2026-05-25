@@ -208,14 +208,21 @@
 
                 <% for( let joc of locals.produse) { %>
                     <!-- de exemplu pt party-game il converteste in partygame -->
-                    <article class="produs <%- joc.tip_joc.replace('-','') %>" id="artc-<%- joc.id %>">
+                    <article class="produs card shadow-sm h-100 <%- joc.tip_joc.replace('-','') %>" id="artc-<%- joc.id %>">
                         <span class="val-durata" style="display:none"><%- joc.durata_minute %></span>
                         <span class="val-varsta" style="display:none"><%- joc.varsta_minima %></span>
                         <span class="min_jucatori" style="display:none"><%- joc.min_jucatori %></span>
                         <span class="max_jucatori" style="display:none"><%- joc.max_jucatori %></span>
-                        <h3 class="nume"><a href="/produs/<%- joc.id %>"><span class="val-nume"><%- joc.nume %></span></a></h3>
+
+                        <div class="card-header bg-transparent border-bottom-0 pt-3">
+                            <h3 class="nume card-title h5">
+                                <a href="/produs/<%- joc.id %>" class="text-decoration-none">
+                                    <span class="val-nume"><%- joc.nume %></span>
+                                </a>
+                            </h3>
+                        </div>
                         
-                        <div class="info-prod">
+                        <div class="card-body info-prod">
                             <div class="coloana-1">
 
                                 <figure>
@@ -226,6 +233,8 @@
 
                                 <ul class="info-caracteristici">
                                     <li><span class="nume-caracteristica">Preț:</span><span class="val-pret"><%- joc.pret %></span> RON</li>
+                                   
+                                    
                                     <li><span class="nume-caracteristica">Durată:</span> <span class="val-durata"><%- joc.durata_minute %></span> min</li>
                                     <li><span class="nume-caracteristica">Complexitate:</span> <span class="val-complexitate"><%- joc.complexitate %></span></li>
                                     <li><span class="nume-caracteristica">Categorii:</span> 

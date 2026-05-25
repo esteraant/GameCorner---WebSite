@@ -173,7 +173,17 @@ footer{
 
 }
  
+/* ETAPA 6 BONUS 12 */
+@keyframes pulseaza {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); background-color: #dc3545; }
+    100% { transform: scale(1); }
+}
 
+.animate-pulse {
+    animation: pulseaza 0.5s infinite alternate;
+    border-color: #ff0000 !important;
+}
 
 figure{
     margin: 0;
@@ -285,7 +295,7 @@ figure.fg-img > img{
 }
 
 
-/*      PAGINA PRDUSE */
+/*      PAGINA PRODUSE - ETAPA 6 */
 .info-prod{
     display:flex;
     align-items:flex-start;
@@ -333,7 +343,7 @@ figure.fg-img > img{
 }
 
 .info-caracteristici {
-    list-style-type: none;
+    list-style-type: none; /*eliminam bulinele implicite*/
     padding: 0;
 }
 
@@ -351,6 +361,78 @@ figure.fg-img > img{
     border-radius: 8px;
     z-index: 9999;
 }
+
+
+/* ETAPA 7 */
+/* starea initiala a fiecarui card de produs inainte de animatia din js */
+.grid-produse .produs.card {
+    opacity: 0;
+    transform: translateY(15px); 
+    transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.grid-produse .produs.card:hover {
+    transform: translateY(-5px) scale(1.02); /* efect de de ridicare si zoom */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; 
+    border-color: var(--bs-primary); 
+}
+
+/* asigura corectitudinea imaginilor in interiorul cardului */
+.grid-produse .produs.card .card-img-top {
+    transition: transform 0.3s ease;
+}
+
+/* BANNER COOKIE */
+#banner_cookie {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    
+    width: 25vw;    /* 25% */
+    height: 25vw;
+    
+    font-size: 1.1vw;
+    
+    color: #ffffff;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    margin: 0;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    transform-origin: left bottom;
+    
+    animation: animatie-banner 5s ease-out forwards;
+}
+
+/* Stil pentru butonul din interiorul bannerului */
+#banner_cookie button {
+    display: block;
+    margin-top: 10px;
+    font-size: inherit; /* ia de la parinte*/
+}
+
+@keyframes animatie-banner {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+        background-color: #8b4513; 
+    }
+    50% {
+        background-color: #cd853f; 
+    }
+    100% {
+        opacity: 0.75;
+        transform: scale(1);
+        background-color: #a0522d; 
+    }
+}
+
 
 
 #link-top {
@@ -824,6 +906,18 @@ footer a {
     }
     /* anularea pozitionarii speciale pe ecrane mici */
     #galerie-statica figure { grid-column: auto !important; }
+
+    #banner_cookie {
+        width: 100%;
+        height: auto;
+        position: static; /* nu mai e fixat in colt */
+        font-size: 14px;
+        color: #fff;
+        background-color: #a0522d !important;
+        opacity: 0.9 !important;
+        transform: none !important;
+        animation: none !important; /* opreste animatia*/
+    }
 }
 
 

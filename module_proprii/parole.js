@@ -1,4 +1,3 @@
-
 sirAlphaNum="";
 v_intervale=[[48,57],[65,90],[97,122]]
 for(let interval of v_intervale){

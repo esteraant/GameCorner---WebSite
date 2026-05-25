@@ -1,9 +1,8 @@
-// În schimba_tema.js
 window.addEventListener("DOMContentLoaded", function() {
     const checkboxTema = document.getElementById("switch-tema");
     const iconTema = document.getElementById("icon-tema");
 
-    // 1. Verificăm dacă utilizatorul a avut anterior tema dark salvată în browser
+    // 1. Verificam daca utilizatorul a avut anterior tema dark salvata in browser
     const temaActiva = localStorage.getItem("tema");
 
     if (temaActiva === "dark") {
@@ -15,11 +14,11 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // 2. Comportamentul în momentul în care utilizatorul apasă pe switch
+    // 2. Comportamentul in momentul in care utilizatorul apasa pe switch
     if (checkboxTema) {
         checkboxTema.onchange = function() {
             if (this.checked) {
-                // Activăm tema DARK
+                // Activam tema DARK
                 document.documentElement.setAttribute("data-tema", "dark");
                 localStorage.setItem("tema", "dark");
                 
@@ -28,7 +27,7 @@ window.addEventListener("DOMContentLoaded", function() {
                     iconTema.classList.add("fa-moon", "text-primary");
                 }
             } else {
-                // Activăm tema LIGHT
+                // Activam tema LIGHT
                 document.documentElement.removeAttribute("data-tema");
                 localStorage.setItem("tema", "light");
                 

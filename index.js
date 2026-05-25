@@ -8,9 +8,10 @@ const ejs=require('ejs');
 const pg = require("pg");
 
 const AccesBD= require("./module_proprii/accesbd.js");
-// const {Utilizator}=require("./module_proprii/utilizator.js")
+const {Utilizator}=require("./module_proprii/utilizator.js")
 const Drepturi = require("./module_proprii/drepturi.js");
 const { RolFactory } = require("./module_proprii/roluri.js");
+// const pathOferte = path.join(__dirname, 'oferte.json');
 
 app= express();
 app.set("view engine", "ejs") //motorul de randare
@@ -126,7 +127,9 @@ app.get("/despre", function(req, res){
     res.render("pagini/despre");
 });
 
-
+app.get("/contact", function(req, res) {
+    res.render("pagini/contact");
+});
 // Cerinta 19
 app.get("/favicon.ico", function(req, res){
     res.sendFile(path.join(__dirname, "resurse/imagini/favicon/favicon.ico"))
@@ -139,7 +142,7 @@ app.get("/produse", function(req, res){
     if(req.query.tip)
         clauzaWhere = ` WHERE tip_joc = '${req.query.tip}'::tipuri_jocuri `
     const coloaneRelevante = "id, nume, pret, durata_minute, complexitate, min_jucatori, max_jucatori, tip_joc, categorie, are_mod_solo, imagine, data_adaugarii, varsta_minima, descriere"; 
-    client.query(`SELECT ${coloaneRelevante} FROM jocuri ${clauzaWhere}`, function(err, rez) {
+    client.query(`SELECT ${coloaneRelevante} FROM jocuri ${clauzaWhere} ORDER BY id ASC`, function(err, rez) {
         if (err){
             console.log("EROARE EXACTA:", err.message)
             afisareEroare(res, 2)
@@ -612,6 +615,93 @@ app.get("/galerie-Statica", async function(req, res) {
     });
 });
 
+
+//      BONUS 12 - ETAPA 6 
+// configurare intervale
+// const T = 60000;      // o oferta noua la fiecare minut
+// const T2 = 120000;     // stergem ofertele expirate de mai mult de 2 minute
+
+// function pornesteSistemOferte(clientSql) {
+//     setInterval(async () => {
+//         try {
+//             // preluam categoriile unice din baza de date dinamic
+//             const rez = await clientSql.query("SELECT DISTINCT nume_categorie FROM categorii"); 
+//             // ajusteaza query-ul de mai sus in functie de tabela, ex: SELECT DISTINCT tip_joc FROM jocuri
+//             const categorii = rez.rows.map(row => row.nume_categorie || row.tip_joc);
+
+//             if (categorii.length === 0) return;
+
+//             // citim fisierul JSON existent
+//             let dateJson = { oferte: [] };
+//             if (fs.existsSync(pathOferte)) {
+//                 dateJson = JSON.parse(fs.readFileSync(pathOferte, 'utf8'));
+//             }
+
+//             // determinam ultima categorie folosita ca sa nu o repetam consecutiv
+//             const ultimaCategorie = dateJson.oferte.length > 0 ? dateJson.oferte[0].categorie : null;
+            
+//             let categorieAleasa;
+//             do {
+//                 categorieAleasa = categorii[Math.floor(Math.random() * categorii.length)];
+//             } while (categorieAleasa === ultimaCategorie && categorii.length > 1);
+
+//             // alegem o reducere aleatorie
+//             const reduceriPosibile = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+//             const reducereAleasa = reduceriPosibile[Math.floor(Math.random() * reduceriPosibile.length)];
+
+//             // calculam datele: incepere acum, finalizare peste intervalul T
+//             const acum = new Date();
+//             const finalizare = new Date(acum.getTime() + T);
+
+//             const nouaOferta = {
+//                 "categorie": categorieAleasa,
+//                 "data-incepere": acum.toISOString(),
+//                 "data-finalizare": finalizare.toISOString(),
+//                 "reducere": reducereAleasa
+//             };
+
+//             // adaugam noua oferta la inceputul vectorului
+//             dateJson.oferte.unshift(nouaOferta);
+
+//             // stergem ofertele mai vechi de T2 decat momentul expirarii lor
+//             const limitaStergere = acum.getTime() - T2;
+//             dateJson.oferte = dateJson.oferte.filter(o => {
+//                 return new Date(o["data-finalizare"]).getTime() > limitaStergere;
+//             });
+
+//             // salvam inapoi in fisier
+//             fs.writeFileSync(pathOferte, JSON.stringify(dateJson, null, 2), 'utf8');
+//             console.log(`Ofertă nouă: Categorie: ${categorieAleasa}, Reducere: ${reducereAleasa}%`);
+
+//         } catch (eroare) {
+//             console.error("Eroare la generarea ofertei:", eroare);
+//         }
+//     }, T);
+// }
+
+// // trimitem ultima oferta din JSON in locals pentru a fi accesibila in toate paginile EJS
+// function adaugaOfertaInLocals(req, res, next) {
+//     try {
+//         if (fs.existsSync(pathOferte)) {
+//             const dateJson = JSON.parse(fs.readFileSync(pathOferte, 'utf8'));
+//             if (dateJson.oferte && dateJson.oferte.length > 0) {
+//                 const primaOferta = dateJson.oferte[0];
+//                 // verificam daca oferta curenta inca este valida
+//                 if (new Date(primaOferta["data-finalizare"]) > new Date()) {
+//                     res.locals.ofertaCurenta = primaOferta;
+//                 } else {
+//                     res.locals.ofertaCurenta = null;
+//                 }
+//             }
+//         }
+//     } catch (e) {
+//         res.locals.ofertaCurenta = null;
+//     }
+//     next();
+// }
+
+// app.use(adaugaOfertaInLocals);
+// pornesteSistemOferte(dbClient); 
 
 
 app.get("/*pagina", function(req, res){

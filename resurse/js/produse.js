@@ -102,6 +102,31 @@ window.onload=function(){  //asteapta ca toata pagina sa fie incarcata in browse
         }
     }
 
+    // etapa 7
+    function animeazaCarduri() {
+        // selectam toate elementele de tip produs
+        let toateProdusele = Array.from(document.getElementsByClassName("produs"));
+        // filtram doar jocurile care sunt vizibile pe ecran
+        let produseVizibile = toateProdusele.filter(p => p.style.display !== "none");
+        
+        // resetam starea vizuala de inceput
+        produseVizibile.forEach(p => {
+            p.style.opacity = "0";
+            p.style.transform = "translateY(15px)";
+        });
+
+        // setam intervalul de timp
+        let t = 100;
+
+        // aparitia asincrona
+        produseVizibile.forEach((prod, index) => {
+            setTimeout(function() {
+                prod.style.opacity = "1";
+                prod.style.transform = "translateY(0)";
+            }, (index + 1) * t);
+        });
+    }
+    setTimeout(animeazaCarduri, 50);
 
     document.getElementById("filtrare").onclick=function(){
         if (!valideazaInputuri()) return;
@@ -211,6 +236,8 @@ window.onload=function(){  //asteapta ca toata pagina sa fie incarcata in browse
             mesajLipsa.classList.add("d-none");  // Ascundem mesajul daca exista jocuri
         }
 
+        animeazaCarduri();
+
     }
 
     document.getElementById("resetare").onclick = function() {
@@ -256,6 +283,7 @@ window.onload=function(){  //asteapta ca toata pagina sa fie incarcata in browse
                 container.appendChild(prod); // anuleaza sortarea vizuala
                 prod.style.display = "block";   // afisam produsul
             }
+            animeazaCarduri();
 
             // eliminam clasele de eroare
             document.getElementById("inp-nume").classList.remove("is-invalid", "input-invalid");

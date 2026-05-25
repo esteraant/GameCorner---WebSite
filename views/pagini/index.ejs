@@ -141,13 +141,11 @@
 
             <section id="evenimente">
                     <h2>Evenimente în Comunitate</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. 
-                        Dolor sit amet consectetur adipiscing elit quisque faucibus.</p>
-                    <!-- <p>Alătură-te comunității noastre de pasionați de <b>boardgames România</b> la următoarele întâlniri:</p>
+                    <p>Alătură-te comunității noastre de pasionați de <b>boardgames România</b> la următoarele întâlniri:</p>
                     
                     <ul>
                         <li>
-                            <time datetime="2026-03-15T18:00">15 martie ora 18:00</time>, 
+                            <time datetime="2026-03-15T18:00">15 iunie ora 18:00</time>, 
                             <b>Campionat de Catan</b> - Vino să îți demonstrezi abilitățile de negociator și poți câștiga vouchere de discount 
                                         pe care le poți folosi la urătoarea comandă plasată pe <b>GameCorner</b>.
                             <p>Grad de ocupare locuri: 
@@ -156,7 +154,7 @@
                             </p>
                         </li>
                         <li>
-                            <time datetime="2026-04-03T14:00">3 aprilie ora 14:00</time>, 
+                            <time datetime="2026-04-03T14:00">3 august ora 14:00</time>, 
                             <b>Workshop: Noutăți de strategie</b> - Prezentăm și testăm cele mai noi <b>jocuri de strategie</b> sosite în stoc. 
                                 Intrarea este liberă pentru toți membrii.
                             <p>Grad de ocupare locuri: 
@@ -165,7 +163,7 @@
                             </p>
                         </li>
                         <li>
-                            <time datetime="2026-04-10T19:00">10 aprilie ora 19:00</time>, 
+                            <time datetime="2026-04-10T19:00">10 iulie ora 19:00</time>, 
                             <b>Seară de Alias și Uno</b> - O seară relaxată dedicată jocurilor de tip <b>jocuri multiplayer</b>, ideală 
                                 pentru a cunoaște alți jucători din București.
                             <p>Grad de ocupare locuri: 
@@ -174,7 +172,7 @@
                             </p>
 
                         </li>
-                    </ul> -->
+                    </ul>
             </section>
                 
             <section id="noutati">
@@ -262,11 +260,10 @@
 
             <section id="profil">
                 <h2>Contul meu</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. 
-                        Dolor sit amet consectetur adipiscing elit quisque faucibus.</p>
-                <!-- <p>Administrează-ți datele personale și vizualizează lista de <b>favorite</b>.</p>
+                <p>Administrează-ți datele personale și vizualizează lista de <b>favorite</b>.</p>
+                <div id="ultimul-produs-accesat" style="display:none"></div>
                 
-                <section id="istoricComenzi">
+                <!-- <section id="istoricComenzi">
                     <h3>Istoric Comenzi</h3>
                     <p>Aici poți vedea toate achizițiile tale de <b>jocuri de masă</b>.</p>
                 </section> -->
@@ -274,9 +271,8 @@
 
             <section id="localizare">
                 <h2>Localizare Sediu Central</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. 
-                        Dolor sit amet consectetur adipiscing elit quisque faucibus.</p>
-                <!-- <p>Te așteptăm în inima Bucureștiului pentru a testa cele mai noi <b>boardgames România</b>:</p>
+               
+                <p>Te așteptăm în inima Bucureștiului pentru a testa cele mai noi <b>boardgames România</b>:</p>
                 
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.884301139315!2d26.097011776740963!3d44.43553547107578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83!5e0!3m2!1sro!2sro!4v1772896288346!5m2!1sro!2sro" 
                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -288,7 +284,7 @@
                     E-mail: <a href="mailto:contact@gamecorner.ro" title="Trimite-ne un e-mail">contact@gamecorner.ro</a><br>
                     
                     WhatsApp: <a href="https://wa.me/40771070700" target="_blank" title="Discută cu noi pe WhatsApp">Răspundem și pe WhatsApp</a>
-                </address> -->
+                </address>
             </section>
 
             <section id="promotii">
@@ -310,6 +306,65 @@
                         
                         <p>Este <em>esențial</em> să verifici stocul înainte de a plasa comanda, deoarece produsele din categoria 
                             <b>jocuri de societate</b> se epuizează rapid.</p>
+
+                        <% if (locals.ofertaCurenta) { %>
+                        <div id="zona-oferta" class="container my-4 p-4 text-center border border-danger rounded shadow-lg bg-light" 
+                            data-finalizare="<%= ofertaCurenta['data-finalizare'] %>">
+                            <h2 class="text-danger"><i class="fa-solid fa-fire-flame-curved"></i> Ofertă!</h2>
+                            <p class="fs-4">Toate produsele din categoria <strong><%= ofertaCurenta.categorie %></strong> au acum o reducere de <span class="badge bg-danger fs-4"><%= ofertaCurenta.reducere %>%</span>!</p>
+                            
+                            <div id="temporizator-oferta" class="fs-3 fw-bold p-2 d-inline-block rounded border">
+                                Timp rămas: <span id="ceas-oferta">00:00:00</span>
+                            </div>
+                        </div>
+                        
+                        <script>
+                            window.addEventListener("DOMContentLoaded", function() {
+                                const containerOferta = document.getElementById("zona-oferta");
+                                const ceas = document.getElementById("ceas-oferta");
+                                const cutieCeas = document.getElementById("temporizator-oferta");
+                                
+                                if (!containerOferta || !ceas) return;
+                                
+                                const dataFinalizare = new Date(containerOferta.getAttribute("data-finalizare")).getTime();
+                                
+                                const x = setInterval(function() {
+                                    const acum = new Date().getTime();
+                                    const diferenta = dataFinalizare - acum;
+                                    
+                                    // Dacă a expirat
+                                    if (diferenta <= 0) {
+                                        clearInterval(x);
+                                        ceas.innerHTML = "EXPIRAT";
+                                        // Forțăm un reload rapid după 1 secundă ca să se preia noua ofertă din JSON
+                                        setTimeout(() => { window.location.reload(); }, 1000);
+                                        return;
+                                    }
+                                    
+                                    // Calcule matematice pentru timp
+                                    const ore = Math.floor((diferenta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                    const minute = Math.floor((diferenta % (1000 * 60 * 60)) / (1000 * 60));
+                                    const secunde = Math.floor((diferenta % (1000 * 60)) / 1000);
+                                    
+                                    // Formatare cu 0 în față
+                                    const hAfisat = ore < 10 ? "0" + ore : ore;
+                                    const mAfisat = minute < 10 ? "0" + minute : minute;
+                                    const sAfisat = secunde < 10 ? "0" + secunde : secunde;
+                                    
+                                    ceas.innerHTML = `${hAfisat}:${mAfisat}:${sAfisat}`;
+                                    
+                                    // [CERINȚA 3]: Marcarea diferită a ultimelor 10 secunde
+                                    if (diferenta <= 10000) {
+                                        cutieCeas.classList.remove("border-dark");
+                                        cutieCeas.classList.add("bg-danger", "text-white", "animate-pulse"); 
+                                        // Poți adăuga în CSS clasa .animate-pulse pentru un efect de flash vizual
+                                    } else {
+                                        cutieCeas.classList.add("bg-white", "text-dark");
+                                    }
+                                }, 1000);
+                            });
+                        </script>
+                    <% } %>
                     </div>
 
                     <br>
